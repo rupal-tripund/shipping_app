@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shipping_app/screens/welcome_screen.dart';
 import 'package:shipping_app/screens/home_screen.dart';
-import 'package:shipping_app/screens/auth/signup_screen.dart';
-import 'package:shipping_app/screens/auth/login.dart';
 import 'constants/styles.dart';
 import 'package:shipping_app/constants/size_config.dart';
 
