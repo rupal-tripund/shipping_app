@@ -148,7 +148,8 @@ class _FormWidgetState extends State<FormWidget> {
         alignment: Alignment.topCenter,
         child: Container(
           padding: EdgeInsets.symmetric(
-            horizontal: Style.formPadding,
+            horizontal: MediaQuery.of(context).orientation == Orientation.portrait
+            ? Style.paddingHeight : Style.paddingHeight * 3,
             vertical: Style.paddingHeight,
           ),
           child: Form(

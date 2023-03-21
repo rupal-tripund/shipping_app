@@ -14,7 +14,6 @@ class Style {
   static const iconBackgroundColor = Colors.white;
   static final loginPageBackgroundColor2 = Colors.grey[300];
 
-
   //font style
   static final sizeTitle = 5 * SizeConfig.textMultiplier;
   static final sizeSubTitle = 2 * SizeConfig.textMultiplier;
@@ -26,7 +25,6 @@ class Style {
   static final paddingHeight = 3.5 * SizeConfig.textMultiplier;
   static final paddingWidth = 2 * SizeConfig.textMultiplier;
   static final marginLink = 2.5 * SizeConfig.textMultiplier;
-  static final formPadding = Style.paddingWidth;
 
 
 }
