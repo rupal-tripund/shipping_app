@@ -8,7 +8,7 @@ class SignupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Style.loginPageBackgroundColor[400],
+      backgroundColor: Style.loginPageBackgroundColor,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -55,7 +55,7 @@ class HeadingWidget extends StatelessWidget {
       height: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: Style.paddingWidth, vertical: Style.paddingHeight),
       decoration:  BoxDecoration(
-        color: Style.loginPageBackgroundColor[400],
+        color: Style.loginPageBackgroundColor,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -138,7 +138,7 @@ class _FormWidgetState extends State<FormWidget> {
       height: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: Style.paddingWidth, vertical: Style.paddingHeight),
       decoration: BoxDecoration(
-        color: Style.loginPageBackgroundColor2[300],
+        color: Style.loginPageBackgroundColor2,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(40),
           topRight: Radius.circular(40),
@@ -148,7 +148,8 @@ class _FormWidgetState extends State<FormWidget> {
         alignment: Alignment.topCenter,
         child: Container(
           padding: EdgeInsets.symmetric(
-            horizontal: Style.formPadding,
+            horizontal: MediaQuery.of(context).orientation == Orientation.portrait
+            ? Style.paddingHeight : Style.paddingHeight * 3,
             vertical: Style.paddingHeight,
           ),
           child: Form(

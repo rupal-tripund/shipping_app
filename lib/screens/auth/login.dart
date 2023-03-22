@@ -69,7 +69,7 @@ class _LoginState extends State<Login> {
                   horizontal: 20.0,
                   vertical: 30.0
               ),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: Style.loginPageBackgroundColor,
               ),
               child: Column(
@@ -216,7 +216,7 @@ class _LoginState extends State<Login> {
                         Container(
                           padding: const EdgeInsets.all(20),
                           width: double.infinity,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               color:Style.loginPageBackgroundColor,
                               borderRadius: BorderRadius.all(Radius.circular(15))
                           ),

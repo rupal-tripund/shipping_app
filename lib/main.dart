@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
                     primarySwatch: Style.primaryThemeColor,
                     scaffoldBackgroundColor: Style.primaryBackgroundColor,
                   ),
-                  home: ProfileSettingScreen(),
+                  home: HomePage(),
                 );
               }
           );
