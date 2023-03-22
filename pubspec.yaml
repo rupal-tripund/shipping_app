@@ -38,6 +38,9 @@ dependencies:
   google_fonts: ^4.0.3
   email_validator: ^2.1.17
   http: ^0.13.5
+  carousel_slider: ^4.2.1
+  get: ^4.6.5
+  image_picker: ^0.8.7
 
 
 

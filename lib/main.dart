@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shipping_app/screens/welcome_screen.dart';
 import 'package:shipping_app/screens/home_screen.dart';
-import 'package:shipping_app/screens/auth/signup_screen.dart';
-import 'package:shipping_app/screens/auth/login.dart';
+import 'package:shipping_app/screens/welcome_screen.dart';
 import 'constants/styles.dart';
 import 'package:shipping_app/constants/size_config.dart';
-
+import 'package:shipping_app/widgets/profile_settings.dart';
 void main() =>runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
                     primarySwatch: Style.primaryThemeColor,
                     scaffoldBackgroundColor: Style.primaryBackgroundColor,
                   ),
-                  home: HomePage(),
+                  home: ProfileSettingScreen(),
                 );
               }
           );
