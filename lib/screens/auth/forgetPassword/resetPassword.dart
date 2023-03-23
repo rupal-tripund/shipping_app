@@ -94,7 +94,6 @@ class BackArrowWidget extends StatelessWidget {
     return IconButton(
       onPressed: () {
         Navigator.pop(context, '/forgetPassword/reset-password');
-        Navigator.pop(context, '/forgetPassword/emailVerification');
       },
       icon: const Icon(Icons.arrow_circle_left_outlined),
       color: Style.iconBackgroundColor,
@@ -249,7 +248,6 @@ class _FormWidgetState extends State<FormWidget> {
                     onTap: () {
                       if(formKey.currentState!.validate()){
                         Navigator.pop(context, '/forgetPassword/reset-password');
-                        Navigator.pop(context, '/forgetPassword/emailVerification');
                       }
                     },
                     child: Container(

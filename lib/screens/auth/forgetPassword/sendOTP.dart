@@ -12,8 +12,7 @@ class CheckOTP extends StatelessWidget {
   Widget build(BuildContext context) {
     var argument = ModalRoute.of(context)?.settings.arguments as Set<String>;
     if(argument.elementAt(0).isEmpty){
-      Navigator.pop(context, '/forgetPassword/reset-password');
-      Navigator.pop(context, '/forgetPassword/emailVerification');
+      Navigator.pop(context, '/forgetPassword/send-otp');
     }
     emailController..text = argument.elementAt(0);
     return Scaffold(
@@ -104,8 +103,9 @@ class BackArrowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        Navigator.pop(context, '/forgetPassword/reset-password');
-        Navigator.pop(context, '/forgetPassword/emailVerification');
+        Navigator.pop(context, '/forgetPassword/send-otp');
+        emailController..text = "";
+        OTPController..text = "";
       },
       icon: const Icon(Icons.arrow_circle_left_outlined),
       color: Style.iconBackgroundColor,

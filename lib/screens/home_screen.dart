@@ -1,20 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shipping_app/screens/list_by_category.dart';
 import 'package:shipping_app/shared/bottom_navigation.dart';
-import 'package:shipping_app/shared/side_menu.dart';
 import 'package:shipping_app/widgets/CategoriesWidget.dart';
-import 'package:shipping_app/widgets/banners.dart';
 import '../../constants/styles.dart';
-import 'package:shipping_app/screens/auth/login.dart';
-import 'package:shipping_app/screens/auth/signup_screen.dart';
+
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Style.loginPageBackgroundColor,
-      drawer: SideMenu(),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Style.loginPageBackgroundColor,
@@ -103,10 +97,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     CategoriesWidget(),
-                    BannerWidget(),
                     SizedBox(height: 5,),
-
-                   
                   ],
                 ),
               ),

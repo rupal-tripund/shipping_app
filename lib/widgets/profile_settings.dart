@@ -183,7 +183,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                     ),
                     Container(
                       padding: const EdgeInsets.all(15),
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           color:Style.loginPageBackgroundColor,
                           borderRadius: BorderRadius.all(Radius.circular(15))
                       ),
