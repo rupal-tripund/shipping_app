@@ -3,7 +3,6 @@ import 'package:shipping_app/constants/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:shipping_app/shared/bottom_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:image_picker/image_picker.dart';
 
 
@@ -184,7 +183,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                     Container(
                       padding: const EdgeInsets.all(15),
                       decoration: const BoxDecoration(
-                          color:Style.loginPageBackgroundColor,
+                          color:Colors.lightBlue,
                           borderRadius: BorderRadius.all(Radius.circular(15))
                       ),
                       child: InkWell(
