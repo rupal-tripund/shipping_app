@@ -228,7 +228,7 @@ class _FormWidgetState extends State<FormWidget> {
                     validator: (value){
                       if(value!.isEmpty) {
                         return 'This field is required';
-                      }else if(!RegExp(r'^[#.0-9a-zA-Z\s,-]+$').hasMatch(value)){
+                      }else if(!RegExp(r'^[#.\da-zA-Z\s,-]+$').hasMatch(value)){
                         return 'Invalid shipping address';
                       }else{
                         return null;
@@ -285,7 +285,7 @@ class _FormWidgetState extends State<FormWidget> {
                     validator: (value){
                       if(value!.isEmpty) {
                         return 'This field is required';
-                      }else if(!RegExp(r'^[#.0-9a-zA-Z\s,-]+$').hasMatch(value)){
+                      }else if(!RegExp(r'^[#.\da-zA-Z\s,-]+$').hasMatch(value)){
                         return 'Invalid billing address';
                       }else{
                         return null;
@@ -313,7 +313,7 @@ class _FormWidgetState extends State<FormWidget> {
                     validator: (value){
                       if(value!.isEmpty) {
                         return 'This field is required';
-                      }else if(!RegExp(r'^(?:[+0]9)?[0-9]{10}$').hasMatch(value)){
+                      }else if(!RegExp(r'^(?:[+0]9)?\d{10}$').hasMatch(value)){
                         return 'Invalid phone number';
                       }else{
                         return null;
