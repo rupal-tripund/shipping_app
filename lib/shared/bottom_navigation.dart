@@ -13,7 +13,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       backgroundColor: Colors.white,
-      selectedItemColor: Style.loginPageBackgroundColor,
+      selectedItemColor: Style.blueAccentPageBackgroundColor,
       currentIndex: currentIndex,
       items: [
         BottomNavigationBarItem(

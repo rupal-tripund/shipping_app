@@ -1,12 +1,23 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import '../../constants/styles.dart';
+import '../../../constants/styles.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({Key? key}) : super(key: key);
+TextEditingController emailController = TextEditingController();
+TextEditingController OTPController = TextEditingController();
+
+class CheckOTP extends StatelessWidget {
+  const CheckOTP({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var argument = ModalRoute.of(context)?.settings.arguments as Set<String>;
+    if(argument.elementAt(0).isEmpty){
+      Navigator.pop(context, '/forgetPassword/send-otp');
+      emailController..text = "";
+      OTPController..text = "";
+    }
+    emailController..text = argument.elementAt(0);
+    OTPController..text = "";
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Style.blueAccentPageBackgroundColor,
@@ -94,7 +105,11 @@ class BackArrowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pop(context, '/forgetPassword/send-otp');
+        emailController..text = "";
+        OTPController..text = "";
+      },
       icon: const Icon(Icons.arrow_circle_left_outlined),
       color: Style.iconBackgroundColor,
       iconSize: Style.sizeIcon,
@@ -111,7 +126,7 @@ class MainHeading extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          'Create an account',
+          'Forgot password',
           style: TextStyle(
             fontSize: Style.sizeTitle,
             fontWeight: FontWeight.bold,
@@ -161,31 +176,7 @@ class _FormWidgetState extends State<FormWidget> {
               child: Column(
                 children: <Widget>[
                   TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.person),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                        borderSide: const BorderSide(color: Colors.black54, width: 2.0),
-                      ),
-                      hintText: 'Name',
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty) {
-                        return 'This field is required';
-                      }else if(!RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
-                        return 'Name field accept alphabets only';
-                      }else{
-                        return null;
-                      }
-                    },
-                  ),
-                  SizedBox(
-                    height: Style.paddingHeight,
-                  ),
-                  TextFormField(
+                    controller: emailController,
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.email),
                       border: OutlineInputBorder(
@@ -207,15 +198,15 @@ class _FormWidgetState extends State<FormWidget> {
                       }
                     },
                   ),
+
                   SizedBox(
                     height: Style.paddingHeight,
                   ),
                   TextFormField(
+                    maxLength: 4,
+                    controller: OTPController,
                     decoration: InputDecoration(
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-                        child: Icon(Icons.local_shipping),
-                      ),
+                      prefixIcon: const Icon(Icons.lock_clock),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
                       ),
@@ -223,98 +214,15 @@ class _FormWidgetState extends State<FormWidget> {
                         borderRadius: BorderRadius.circular(13.0),
                         borderSide: const BorderSide(color: Colors.black54, width: 2.0),
                       ),
-                      hintText: 'Shipping Address',
+                      hintText: 'OTP',
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
                         return 'This field is required';
-                      }else if(!RegExp(r'^[#.\da-zA-Z\s,-]+$').hasMatch(value)){
-                        return 'Invalid shipping address';
-                      }else{
-                        return null;
-                      }
-                    },
-                    maxLines: 5,
-                  ),
-
-                  SizedBox(
-                    height: Style.paddingHeight,
-                  ),
-
-                  CheckboxListTile( //checkbox positioned at left
-                    value: check,
-                    controlAffinity: ListTileControlAffinity.leading,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        check = value;
-                        if(check == true){
-
-                        }else{
-
-                        }
-                      });
-                    },
-                    title: Text(
-                      "Do you want same shipping address in billing address",
-                      style: TextStyle(
-                        fontSize: Style.sizeSubTitle,
-                        color: Style.textColorLight,
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: Style.paddingHeight,
-                  ),
-
-                  TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-                        child: Icon(Icons.account_balance_wallet),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                        borderSide: const BorderSide(color: Colors.black54, width: 2.0),
-                      ),
-                      hintText: 'Billing Address',
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty) {
-                        return 'This field is required';
-                      }else if(!RegExp(r'^[#.\da-zA-Z\s,-]+$').hasMatch(value)){
-                        return 'Invalid billing address';
-                      }else{
-                        return null;
-                      }
-                    },
-                    maxLines: 5,
-                  ),
-
-                  SizedBox(
-                    height: Style.paddingHeight,
-                  ),
-
-                  TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.phone),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                        borderSide: const BorderSide(color: Colors.black54, width: 2.0),
-                      ),
-                      hintText: 'Phone number',
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty) {
-                        return 'This field is required';
-                      }else if(!RegExp(r'^(?:[+0]9)?\d{10}$').hasMatch(value)){
-                        return 'Invalid phone number';
+                      }else if(!RegExp(r"^\d+$").hasMatch(value)){
+                        return 'Invalid OTP';
+                      }else if(value.length < 3){
+                        return 'Invalid OTP';
                       }else{
                         return null;
                       }
@@ -322,12 +230,15 @@ class _FormWidgetState extends State<FormWidget> {
                   ),
 
                   SizedBox(
-                    height: Style.paddingHeight * 3,
+                    height: Style.paddingHeight * 5,
                   ),
 
                   InkWell(
                     onTap: () {
                       if(formKey.currentState!.validate()){
+                        Navigator.pushReplacementNamed(context, '/forgetPassword/reset-password');
+                        emailController..text = "";
+                        OTPController..text = "";
                       }
                     },
                     child: Container(
@@ -342,7 +253,7 @@ class _FormWidgetState extends State<FormWidget> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              'Sign up',
+                              'Submit',
                               style: TextStyle(
                                 fontSize: Style.sizeButtonText,
                                 fontWeight: FontWeight.bold,
@@ -354,31 +265,6 @@ class _FormWidgetState extends State<FormWidget> {
                       ),
                     ),
                   ),
-
-                  SizedBox(
-                    height: Style.marginLink,
-                  ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Already have an account ?',
-                        style: TextStyle(
-                          fontSize: Style.sizeSubTitle,
-                          color: Style.textColorLight,
-                        ),
-                      ),
-                      Text(
-                        'Sign in',
-                        style: TextStyle(
-                          fontSize: Style.sizeSubTitle,
-                          color: Style.blueAccentPageBackgroundColor,
-                        ),
-                      ),
-                    ],
-                  )
-
                 ],
               ),
             ),
@@ -388,9 +274,3 @@ class _FormWidgetState extends State<FormWidget> {
     );
   }
 }
-
-
-
-
-
-

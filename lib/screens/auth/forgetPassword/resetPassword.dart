@@ -1,10 +1,8 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import '../../constants/styles.dart';
+import '../../../constants/styles.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({Key? key}) : super(key: key);
-
+class ResetPassword extends StatelessWidget {
+  const ResetPassword ({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +92,10 @@ class BackArrowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pop(context, '/forgetPassword/reset-password');
+
+      },
       icon: const Icon(Icons.arrow_circle_left_outlined),
       color: Style.iconBackgroundColor,
       iconSize: Style.sizeIcon,
@@ -111,7 +112,7 @@ class MainHeading extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          'Create an account',
+          'Reset password',
           style: TextStyle(
             fontSize: Style.sizeTitle,
             fontWeight: FontWeight.bold,
@@ -131,6 +132,10 @@ class FormWidget extends StatefulWidget {
 
 class _FormWidgetState extends State<FormWidget> {
   bool? check = false;
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  bool _obscureText = true;
+  bool _obscureText2 = true;
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -161,8 +166,20 @@ class _FormWidgetState extends State<FormWidget> {
               child: Column(
                 children: <Widget>[
                   TextFormField(
+                    obscureText: _obscureText,
+                    controller: passwordController,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.person),
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _obscureText =! _obscureText;
+                          });
+                        },
+                        child: Icon(_obscureText
+                            ?Icons.visibility
+                            :Icons.visibility_off),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
                       ),
@@ -170,13 +187,15 @@ class _FormWidgetState extends State<FormWidget> {
                         borderRadius: BorderRadius.circular(13.0),
                         borderSide: const BorderSide(color: Colors.black54, width: 2.0),
                       ),
-                      hintText: 'Name',
+                      hintText: 'Password',
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
                         return 'This field is required';
-                      }else if(!RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
-                        return 'Name field accept alphabets only';
+                      }else if(value != confirmPasswordController.value.text){
+                        return 'password and confirm password do not match';
+                      }else if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)(?=.*?[!@#\\$&*~]).{8,}$').hasMatch(value)){
+                        return 'weak password enter strong password';
                       }else{
                         return null;
                       }
@@ -186,35 +205,19 @@ class _FormWidgetState extends State<FormWidget> {
                     height: Style.paddingHeight,
                   ),
                   TextFormField(
+                    obscureText: _obscureText2,
+                    controller: confirmPasswordController,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.email),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                        borderSide: const BorderSide(color: Colors.black54, width: 2.0),
-                      ),
-                      hintText: 'Email',
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty) {
-                        return 'This field is required';
-                      }else if(!EmailValidator.validate(value)){
-                        return 'Invalid Email';
-                      }else{
-                        return null;
-                      }
-                    },
-                  ),
-                  SizedBox(
-                    height: Style.paddingHeight,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-                        child: Icon(Icons.local_shipping),
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _obscureText2 =! _obscureText2;
+                          });
+                        },
+                        child: Icon(_obscureText2
+                            ?Icons.visibility
+                            :Icons.visibility_off),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
@@ -223,98 +226,15 @@ class _FormWidgetState extends State<FormWidget> {
                         borderRadius: BorderRadius.circular(13.0),
                         borderSide: const BorderSide(color: Colors.black54, width: 2.0),
                       ),
-                      hintText: 'Shipping Address',
+                      hintText: 'Confirm password',
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
                         return 'This field is required';
-                      }else if(!RegExp(r'^[#.\da-zA-Z\s,-]+$').hasMatch(value)){
-                        return 'Invalid shipping address';
-                      }else{
-                        return null;
-                      }
-                    },
-                    maxLines: 5,
-                  ),
-
-                  SizedBox(
-                    height: Style.paddingHeight,
-                  ),
-
-                  CheckboxListTile( //checkbox positioned at left
-                    value: check,
-                    controlAffinity: ListTileControlAffinity.leading,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        check = value;
-                        if(check == true){
-
-                        }else{
-
-                        }
-                      });
-                    },
-                    title: Text(
-                      "Do you want same shipping address in billing address",
-                      style: TextStyle(
-                        fontSize: Style.sizeSubTitle,
-                        color: Style.textColorLight,
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: Style.paddingHeight,
-                  ),
-
-                  TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-                        child: Icon(Icons.account_balance_wallet),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                        borderSide: const BorderSide(color: Colors.black54, width: 2.0),
-                      ),
-                      hintText: 'Billing Address',
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty) {
-                        return 'This field is required';
-                      }else if(!RegExp(r'^[#.\da-zA-Z\s,-]+$').hasMatch(value)){
-                        return 'Invalid billing address';
-                      }else{
-                        return null;
-                      }
-                    },
-                    maxLines: 5,
-                  ),
-
-                  SizedBox(
-                    height: Style.paddingHeight,
-                  ),
-
-                  TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.phone),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(13.0),
-                        borderSide: const BorderSide(color: Colors.black54, width: 2.0),
-                      ),
-                      hintText: 'Phone number',
-                    ),
-                    validator: (value){
-                      if(value!.isEmpty) {
-                        return 'This field is required';
-                      }else if(!RegExp(r'^(?:[+0]9)?\d{10}$').hasMatch(value)){
-                        return 'Invalid phone number';
+                      }else if(value != passwordController.value.text){
+                        return 'password and confirm password do not match';
+                      }else if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)(?=.*?[!@#\\$&*~]).{8,}$').hasMatch(value)){
+                        return 'weak password enter strong password';
                       }else{
                         return null;
                       }
@@ -322,12 +242,13 @@ class _FormWidgetState extends State<FormWidget> {
                   ),
 
                   SizedBox(
-                    height: Style.paddingHeight * 3,
+                    height: Style.paddingHeight * 4,
                   ),
 
                   InkWell(
                     onTap: () {
                       if(formKey.currentState!.validate()){
+                        Navigator.pop(context, '/forgetPassword/reset-password');
                       }
                     },
                     child: Container(
@@ -342,7 +263,7 @@ class _FormWidgetState extends State<FormWidget> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              'Sign up',
+                              'Reset password',
                               style: TextStyle(
                                 fontSize: Style.sizeButtonText,
                                 fontWeight: FontWeight.bold,
@@ -354,31 +275,6 @@ class _FormWidgetState extends State<FormWidget> {
                       ),
                     ),
                   ),
-
-                  SizedBox(
-                    height: Style.marginLink,
-                  ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Already have an account ?',
-                        style: TextStyle(
-                          fontSize: Style.sizeSubTitle,
-                          color: Style.textColorLight,
-                        ),
-                      ),
-                      Text(
-                        'Sign in',
-                        style: TextStyle(
-                          fontSize: Style.sizeSubTitle,
-                          color: Style.blueAccentPageBackgroundColor,
-                        ),
-                      ),
-                    ],
-                  )
-
                 ],
               ),
             ),
@@ -388,9 +284,3 @@ class _FormWidgetState extends State<FormWidget> {
     );
   }
 }
-
-
-
-
-
-

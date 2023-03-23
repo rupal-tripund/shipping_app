@@ -40,7 +40,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
       appBar:AppBar(
 
         title: Text('Profile Setting'),
-        backgroundColor: Style.loginPageBackgroundColor,
+        backgroundColor: Style.blueAccentPageBackgroundColor,
       ),
       body: SingleChildScrollView(
 
@@ -182,8 +182,8 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                     ),
                     Container(
                       padding: const EdgeInsets.all(15),
-                      decoration: const BoxDecoration(
-                          color:Colors.lightBlue,
+                      decoration: BoxDecoration(
+                          color:Style.blueAccentPageBackgroundColor,
                           borderRadius: BorderRadius.all(Radius.circular(15))
                       ),
                       child: InkWell(

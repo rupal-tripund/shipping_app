@@ -205,7 +205,7 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                         Icons.circle,
                         size: 10.0,
                         color: pageNo == index
-                            ? Style.loginPageBackgroundColor
+                            ? Style.blueAccentPageBackgroundColor
                             : Colors.grey.shade300,
                       ),
                     ))),

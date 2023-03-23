@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Style.loginPageBackgroundColor,
+      backgroundColor: Style.blueAccentPageBackgroundColor,
       drawer: SideMenu(),
       appBar: const TopNavBar(),
       body: SafeArea(
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
-                              color: Style.loginPageBackgroundColor,
+                              color: Style.blueAccentPageBackgroundColor,
                             ),
                           ),
                           Text(
@@ -89,39 +89,14 @@ class HomePage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
-                              color: Style.loginPageBackgroundColor,
+                              color: Style.blueAccentPageBackgroundColor,
                             ),
                           )
                         ],
                       ),
                     ),
                     CategoriesWidget(),
-
-
-
-                    // Container(
-                    //
-                    //   color: Style.loginPageBackgroundColor,
-                    //   alignment: Alignment.center,
-                    //   height: 28,
-                    //   child: Column(
-                    //     children: [
-                    //       Text(
-                    //         "Terms & Condition",
-                    //         style: TextStyle(
-                    //             fontSize: 14,
-                    //             color: Colors.white,
-                    //             fontWeight: FontWeight.bold),
-                    //       ),
-                    //       Text(
-                    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed  .",
-                    //         style: TextStyle(color: Colors.white,
-                    //
-                    //             fontSize: 10,fontWeight: FontWeight.bold),
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
+                    SizedBox(height: 5,),
                   ],
                 ),
               ),
