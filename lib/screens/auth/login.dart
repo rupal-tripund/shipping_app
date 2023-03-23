@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Style.loginPageBackgroundColor,
+      backgroundColor: Style.blueAccentPageBackgroundColor,
       body: SafeArea(
 
         child: Column(
@@ -70,7 +70,7 @@ class _LoginState extends State<Login> {
                   vertical: Style.paddingHeight,
               ),
               decoration: BoxDecoration(
-                color: Style.loginPageBackgroundColor,
+                color: Style.blueAccentPageBackgroundColor,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,9 +105,9 @@ class _LoginState extends State<Login> {
                     width: width,
                     padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width < 450
-                          ? Style.paddingHeight * 2 : Style.paddingHeight * 3,
+                          ? Style.paddingHeight * 1.5 : Style.paddingHeight * 2,
                       vertical: MediaQuery.of(context).size.width < 450
-                          ? Style.paddingHeight * 2 : Style.paddingHeight * 3,
+                          ? Style.paddingHeight * 1.5 : Style.paddingHeight * 2,
                     ),
                     child: Form (
                       key: formKey,
@@ -212,7 +212,7 @@ class _LoginState extends State<Login> {
                                 style: TextStyle(
                                   fontSize: Style.sizeButtonText,
                                   fontWeight: FontWeight.bold,
-                                  color: Style.loginPageBackgroundColor,
+                                  color: Style.blueAccentPageBackgroundColor,
                                 ),
                               ),
                             ),
@@ -226,7 +226,7 @@ class _LoginState extends State<Login> {
                           padding: const EdgeInsets.all(20),
                           width: double.infinity,
                           decoration: BoxDecoration(
-                              color:Style.loginPageBackgroundColor,
+                              color:Style.blueAccentPageBackgroundColor,
                               borderRadius: BorderRadius.all(Radius.circular(15))
                           ),
                           child: InkWell(

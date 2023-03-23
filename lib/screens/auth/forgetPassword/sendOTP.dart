@@ -13,11 +13,14 @@ class CheckOTP extends StatelessWidget {
     var argument = ModalRoute.of(context)?.settings.arguments as Set<String>;
     if(argument.elementAt(0).isEmpty){
       Navigator.pop(context, '/forgetPassword/send-otp');
+      emailController..text = "";
+      OTPController..text = "";
     }
     emailController..text = argument.elementAt(0);
+    OTPController..text = "";
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Style.loginPageBackgroundColor,
+      backgroundColor: Style.blueAccentPageBackgroundColor,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -64,7 +67,7 @@ class HeadingWidget extends StatelessWidget {
       height: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: Style.paddingWidth, vertical: Style.paddingHeight),
       decoration:  BoxDecoration(
-        color: Style.loginPageBackgroundColor,
+        color: Style.blueAccentPageBackgroundColor,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -151,7 +154,7 @@ class _FormWidgetState extends State<FormWidget> {
       height: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: Style.paddingWidth, vertical: Style.paddingHeight),
       decoration: BoxDecoration(
-        color: Style.loginPageBackgroundColor2,
+        color: Style.primaryBackgroundColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(40),
           topRight: Radius.circular(40),

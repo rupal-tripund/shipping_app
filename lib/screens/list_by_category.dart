@@ -26,14 +26,14 @@ class _ListByCategoryState extends State<ListByCategory> {
       appBar:AppBar(
 
         title: Text(title),
-        backgroundColor: Style.loginPageBackgroundColor,
+        backgroundColor: Style.blueAccentPageBackgroundColor,
       ),
       body: ListView.builder(itemBuilder: (context, index){
         return Padding(
           padding: const EdgeInsets.all(2.0),
           child: Card(
             elevation: 7,
-            shadowColor:Style.loginPageBackgroundColor,
+            shadowColor:Style.blueAccentPageBackgroundColor,
             child: Padding(
               padding: const EdgeInsets.all(8.0),
                   child: InkWell(
@@ -79,7 +79,7 @@ class _ListByCategoryState extends State<ListByCategory> {
                         ),
                         Text("View Details",
                           style: TextStyle(
-                              color:Style.loginPageBackgroundColor,
+                              color:Style.blueAccentPageBackgroundColor,
                           ),
                         ),
 
@@ -90,7 +90,7 @@ class _ListByCategoryState extends State<ListByCategory> {
                     padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      color: Style.loginPageBackgroundColor,
+                      color: Style.blueAccentPageBackgroundColor,
                     ),
                     child: Text(
                     "₹"+items[index]['price'].toString(),

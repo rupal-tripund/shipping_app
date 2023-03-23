@@ -9,7 +9,7 @@ class CheckEmail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Style.loginPageBackgroundColor,
+      backgroundColor: Style.blueAccentPageBackgroundColor,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -56,7 +56,7 @@ class HeadingWidget extends StatelessWidget {
       height: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: Style.paddingWidth, vertical: Style.paddingHeight),
       decoration:  BoxDecoration(
-        color: Style.loginPageBackgroundColor,
+        color: Style.blueAccentPageBackgroundColor,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -142,7 +142,7 @@ class _FormWidgetState extends State<FormWidget> {
       height: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: Style.paddingWidth, vertical: Style.paddingHeight),
       decoration: BoxDecoration(
-        color: Style.loginPageBackgroundColor2,
+        color: Style.primaryBackgroundColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(40),
           topRight: Radius.circular(40),

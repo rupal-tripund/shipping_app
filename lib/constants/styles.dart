@@ -6,13 +6,12 @@ class Style {
   //colors
   static const primaryThemeColor = Colors.blue;
   static const primaryBackgroundColor = Colors.white;
-  static final loginPageBackgroundColor = Colors.lightBlueAccent[400];
+  static final blueAccentPageBackgroundColor = Colors.lightBlueAccent[400];
   static const brightness = Brightness.light;
   static const textColorDark = Colors.white;
   static const textColorLight = Colors.black;
   static final iconColor = Colors.lightBlueAccent[400];
   static const iconBackgroundColor = Colors.white;
-  static final loginPageBackgroundColor2 = Colors.grey[300];
   static const redColor = Colors.redAccent;
 
   //font style

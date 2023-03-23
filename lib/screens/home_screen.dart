@@ -8,10 +8,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Style.loginPageBackgroundColor,
+      backgroundColor: Style.blueAccentPageBackgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Style.loginPageBackgroundColor,
+        backgroundColor: Style.blueAccentPageBackgroundColor,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
-                              color: Style.loginPageBackgroundColor,
+                              color: Style.blueAccentPageBackgroundColor,
                             ),
                           ),
                           Text(
@@ -90,7 +90,7 @@ class HomePage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
-                              color: Style.loginPageBackgroundColor,
+                              color: Style.blueAccentPageBackgroundColor,
                             ),
                           )
                         ],
