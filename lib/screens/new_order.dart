@@ -17,7 +17,7 @@ class newOrder extends StatelessWidget {
     return Scaffold(
       appBar:AppBar(
 
-        backgroundColor: Style.loginPageBackgroundColor,
+        backgroundColor: Style.blueAccentPageBackgroundColor,
         title: Text('New Order',
         style: TextStyle(
         fontSize: 35,

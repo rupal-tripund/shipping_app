@@ -24,7 +24,7 @@ class SideMenu extends StatelessWidget {
       ),
       ),
         decoration: BoxDecoration(
-          color: Style.loginPageBackgroundColor,
+          color: Style.blueAccentPageBackgroundColor,
         ),
       ),
       ListTile(

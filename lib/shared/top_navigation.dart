@@ -23,7 +23,7 @@ class TopNavBar extends StatelessWidget implements PreferredSize {
           );
         },
       ),
-      backgroundColor: Style.loginPageBackgroundColor,
+      backgroundColor: Style.blueAccentPageBackgroundColor,
       actions: [
         Container(
           padding: EdgeInsets.only(right: 20, top: 5),
@@ -31,7 +31,7 @@ class TopNavBar extends StatelessWidget implements PreferredSize {
           Icons.shopping_cart,
           size: 35.0,
         ),
-        
+
         )
 
       ],
