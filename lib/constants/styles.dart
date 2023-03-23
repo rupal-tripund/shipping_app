@@ -13,6 +13,7 @@ class Style {
   static final iconColor = Colors.lightBlueAccent[400];
   static const iconBackgroundColor = Colors.white;
   static final loginPageBackgroundColor2 = Colors.grey[300];
+  static const redColor = Colors.redAccent;
 
   //font style
   static final sizeTitle = 5 * SizeConfig.textMultiplier;
