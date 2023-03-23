@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shipping_app/screens/list_by_category.dart';
 import 'package:shipping_app/shared/bottom_navigation.dart';
+import 'package:shipping_app/shared/side_menu.dart';
 import 'package:shipping_app/widgets/CategoriesWidget.dart';
 import 'package:shipping_app/widgets/banners.dart';
 import '../../constants/styles.dart';
@@ -12,42 +14,15 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Style.loginPageBackgroundColor,
+      drawer: SideMenu(),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Style.loginPageBackgroundColor,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                padding: EdgeInsets.only(right: 20, left: 15, top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Icon(
-                      Icons.menu,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          color: Style.loginPageBackgroundColor,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.white.withOpacity(0.5),
-                                blurRadius: 2)
-                          ]),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          CupertinoIcons.profile_circled,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
               Container(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.symmetric(horizontal: 15),
@@ -56,14 +31,11 @@ class HomePage extends StatelessWidget {
                     Text(
                       "Welcome",
                       style: TextStyle(
-                          fontSize: 35,
+                          fontSize: 30,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      "Lorem ipsum dolor sit amet.",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    )
+
                   ],
                 ),
               ),
@@ -132,27 +104,9 @@ class HomePage extends StatelessWidget {
                     ),
                     CategoriesWidget(),
                     BannerWidget(),
-                    SizedBox(height: 10,),
-                    Container(
-                      color: Style.loginPageBackgroundColor,
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Terms & Condition",
-                            style: TextStyle(
-                                fontSize: 21,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed  .",
-                            style: TextStyle(color: Colors.black, fontSize: 14),
-                          )
-                        ],
-                      ),
-                    ),
+                    SizedBox(height: 5,),
+
+                   
                   ],
                 ),
               ),

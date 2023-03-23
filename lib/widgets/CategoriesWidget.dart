@@ -1,6 +1,6 @@
-
 import 'package:flutter/material.dart';
 import '../../constants/styles.dart';
+import 'package:shipping_app/screens/list_by_category.dart';
 
 class CategoriesWidget extends StatefulWidget {
   CategoriesWidget({Key? key}) : super(key: key);
@@ -13,13 +13,14 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
   static const mainContainerColor = Colors.white;
   int pageNo = 0;
   dynamic categories = {
-    1: 'Electronics',
-    2: 'Hair Appliances',
-    3: 'Beauty Products',
-    4: 'Grocery',
-    5: 'Kitchen Appliances',
-    6: 'Men',
-    7: 'Women Ethnic'
+    "01": 'Electronics',
+    "02": 'Hair Appliances',
+    "03": 'Beauty Products',
+    "04": 'Grocery',
+    "11": 'Kitchen Appliances',
+    "12": 'Men',
+    "13": 'Women Ethnic',
+    "14": 'Test'
   };
   late final PageController pageController;
   @override
@@ -40,14 +41,12 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
       children: [
         SizedBox(
           height: 250,
-          width: 350,
+          width: 330,
           child: PageView.builder(
             controller: PageController(),
-            onPageChanged: (index){
+            onPageChanged: (index) {
               pageNo = index;
-              setState(() {
-
-              });
+              setState(() {});
             },
             itemBuilder: (context, index) {
               return AnimatedBuilder(
@@ -56,73 +55,137 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                     return child!;
                   },
                   child: Container(
-                    margin: EdgeInsets.all(10),
+                    margin:
+                        EdgeInsets.only(top: 10, bottom: 10, left: 5, right: 5),
                     color: mainContainerColor,
                     child: Column(
                       children: [
                         Expanded(
                           flex: 1,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Container(
-                                  margin: EdgeInsets.all(10),
-                                  // color: Colors.red,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: AssetImage('assets/images/' +
-                                              '$index' +
-                                              '1.jpg'))),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ListByCategory(),
+                                  ));
+                            },
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Center(
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/${index}1.jpg',
+                                          height: 90,
+                                          width: 300,
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(categories['${index}1'],
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: 1,
+                                              wordSpacing: 2,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Container(
-                                  margin: EdgeInsets.all(10),
-                                  // color: Colors.red,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: AssetImage('assets/images/' +
-                                              '$index' +
-                                              '2.jpg'))),
+                                Expanded(
+                                  flex: 1,
+                                  child: Center(
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/${index}2.jpg',
+                                          height: 90,
+                                          width: 300,
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(categories['${index}2'],
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: 1,
+                                              wordSpacing: 2,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                         Expanded(
                           flex: 1,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Container(
-                                  margin: EdgeInsets.all(10),
-                                  // color: Colors.red,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: AssetImage('assets/images/' +
-                                              '$index' +
-                                              '3.jpg'))),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ListByCategory(),
+                                  ));
+                            },
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Center(
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/${index}3.jpg',
+                                          height: 90,
+                                          width: 300,
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(categories['${index}3'],
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: 1,
+                                              wordSpacing: 2,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Container(
-                                  margin: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: AssetImage('assets/images/' +
-                                              '$index' +
-                                              '4.jpg'))),
+                                Expanded(
+                                  flex: 1,
+                                  child: Center(
+                                    child: Column(
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/${index}4.jpg',
+                                          height: 90,
+                                          width: 300,
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(categories['${index}4'],
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              letterSpacing: 1,
+                                              wordSpacing: 2,
+                                            )),
+                                      ],
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         )
                       ],
@@ -136,14 +199,16 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
                 2,
-                    (index) => Container(
-                  margin: EdgeInsets.all(2.0),
-                  child: Icon(
-                    Icons.circle,
-                    size: 10.0,
-                    color: pageNo == index?Style.loginPageBackgroundColor:Colors.grey.shade300,
-                  ),
-                ))),
+                (index) => Container(
+                      margin: EdgeInsets.all(2.0),
+                      child: Icon(
+                        Icons.circle,
+                        size: 10.0,
+                        color: pageNo == index
+                            ? Style.loginPageBackgroundColor
+                            : Colors.grey.shade300,
+                      ),
+                    ))),
         SizedBox(
           height: 20.0,
         )
