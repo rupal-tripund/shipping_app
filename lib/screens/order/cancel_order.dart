@@ -10,11 +10,11 @@ class CancelOrder extends StatefulWidget {
 
 class _CancelOrderState extends State<CancelOrder> {
   final _formKey = GlobalKey<FormState>();
-  String StatusValue = "";
-  List<String> StatusItem = [
-    "Status 1",
-    "Status 2",
-    "Status 3"
+  String status = "";
+  List<String> statusList = [
+    "First stage",
+    "Second Stage",
+    "Third Stage",
   ];
   @override
   Widget build(BuildContext context) {
@@ -122,47 +122,44 @@ class _CancelOrderState extends State<CancelOrder> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          TextFormField(
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.timelapse_outlined),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(13.0),
+                         DropdownButtonHideUnderline(
+                              child: DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  prefixIcon: const Icon(Icons.timelapse_outlined),
+                                  hintText: 'Please select status',
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(13.0),
+                                    borderSide: const BorderSide(color: Colors.black54, width: 2.0),
+                                  ),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(13.0)
+                                  ),
+                                ),
+                                value: status.isEmpty ? null : status,
+                                isDense: true,
+                                isExpanded: true,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    status = newValue!;
+                                  });
+                                },
+                                items: statusList.map(
+                                        (item) {
+                                      return DropdownMenuItem(
+                                        value: item,
+                                        child: Text(item),
+                                      );
+                                    }
+                                ).toList(),
+                                validator: (value){
+                                  if(value == null) {
+                                    return 'This field is required';
+                                  }else{
+                                    return null;
+                                  }
+                                },
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(13.0),
-                                borderSide: const BorderSide(color: Colors.black54, width: 2.0),
-                              ),
-                              hintText: 'Status',
                             ),
-                            validator: (value){
-                              if(value!.isEmpty) {
-                                return 'This field is required';
-                              }else{
-                                return null;
-                              }
-                            },
-                          ),
-                          // DropdownButtonHideUnderline(
-                          //   child: DropdownButton(
-                          //     hint: Text("Select Status"),
-                          //     value: StatusValue.isNotEmpty ? StatusValue : null,
-                          //     isDense: true,
-                          //     isExpanded: true,
-                          //     onChanged: (newValue) {
-                          //       setState(() {
-                          //         StatusValue = newValue!;
-                          //       });
-                          //     },
-                          //     items: StatusItem.map(
-                          //       (item) {
-                          //         return DropdownMenuItem(
-                          //           value: item,
-                          //           child: Text(item),
-                          //         );
-                          //       }
-                          //     ).toList(),
-                          //   ),
-                          // ),
                           SizedBox(
                             height: Style.paddingHeight / 1.5,
                           ),
@@ -179,7 +176,7 @@ class _CancelOrderState extends State<CancelOrder> {
                                 borderRadius: BorderRadius.circular(13.0),
                                 borderSide: const BorderSide(color: Colors.black54, width: 2.0),
                               ),
-                              hintText: 'Reason',
+                              hintText: 'Please enter Reason',
                             ),
                             validator: (value){
                               if(value!.isEmpty) {
@@ -205,7 +202,7 @@ class _CancelOrderState extends State<CancelOrder> {
                                 borderRadius: BorderRadius.circular(13.0),
                                 borderSide: const BorderSide(color: Colors.black54, width: 2.0),
                               ),
-                              hintText: 'Penalty',
+                              hintText: 'Please enter penalty',
                             ),
                             validator: (value){
                               if(value!.isEmpty) {
@@ -230,7 +227,7 @@ class _CancelOrderState extends State<CancelOrder> {
                                 borderRadius: BorderRadius.circular(13.0),
                                 borderSide: const BorderSide(color: Colors.black54, width: 2.0),
                               ),
-                              hintText: 'Refund amount',
+                              hintText: 'Please enter refund amount',
                             ),
                             validator: (value){
                               if(value!.isEmpty) {
