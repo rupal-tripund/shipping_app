@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shipping_app/screens/auth/forgetPassword/EmailVerification.dart';
-import 'package:shipping_app/screens/auth/forgetPassword/resetPassword.dart';
-import 'package:shipping_app/screens/auth/forgetPassword/sendOTP.dart';
-import 'package:shipping_app/screens/auth/login.dart';
-import 'package:shipping_app/screens/auth/signup_screen.dart';
-import 'package:shipping_app/screens/welcome_screen.dart';
+
+import 'package:shipping_app/screens/new_order_screen.dart';
+
 import 'constants/styles.dart';
 import 'package:shipping_app/constants/size_config.dart';
 
@@ -27,15 +24,16 @@ class MyApp extends StatelessWidget {
                     primarySwatch: Style.primaryThemeColor,
                     scaffoldBackgroundColor: Style.primaryBackgroundColor,
                   ),
-                  initialRoute: '/',
-                  routes: {
-                    '/' : (context) => const WelcomeScreen(),
-                    '/login': (context) => const Login(),
-                    '/signUp': (context) => const SignupPage(),
-                    '/forgetPassword/email-verification': (context) => const CheckEmail(),
-                    '/forgetPassword/send-otp': (context) => const CheckOTP(),
-                    '/forgetPassword/reset-password': (context) => const ResetPassword(),
-                  },
+                  // initialRoute: '/',
+                  home: MyHomePage(),
+                  // routes: {
+                  //   '/' : (context) => const WelcomeScreen(),
+                  //   '/login': (context) => const Login(),
+                  //   '/signUp': (context) => const SignupPage(),
+                  //   '/forgetPassword/email-verification': (context) => const CheckEmail(),
+                  //   '/forgetPassword/send-otp': (context) => const CheckOTP(),
+                  //   '/forgetPassword/reset-password': (context) => const ResetPassword(),
+                  // },
                 );
               }
           );
