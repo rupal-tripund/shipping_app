@@ -10,6 +10,7 @@ class Style {
   static const brightness = Brightness.light;
   static const textColorDark = Colors.white;
   static const textColorLight = Colors.black;
+  static final textColorGrey = Colors.black54;
   static final iconColor = Colors.lightBlueAccent[400];
   static const iconBackgroundColor = Colors.white;
   static const redColor = Colors.redAccent;

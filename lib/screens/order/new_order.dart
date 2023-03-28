@@ -2,7 +2,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shipping_app/shared/bottom_navigation.dart';
-import '../../constants/styles.dart';
+import '../../../constants/styles.dart';
 //ignore: must_be_immutable
 class newOrder extends StatelessWidget {
 
