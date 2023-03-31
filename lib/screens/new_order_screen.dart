@@ -3,6 +3,7 @@ import 'package:shipping_app/constants/styles.dart';
 import 'package:shipping_app/shared/side_menu.dart';
 import 'package:shipping_app/shared/top_navigation.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:shipping_app/shared/bottom_navigation.dart';
 import 'order/add_order_detail.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -76,99 +77,105 @@ class _MyHomePageState extends State<MyHomePage> {
           title: const Text('New Order'),
           content: SingleChildScrollView(
             child: Container(
-              height: MediaQuery.of(context).size.height*0.5,
+              height: MediaQuery.of(context).size.height*0.55,
               width:MediaQuery.of(context).size.height*0.85,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  TextFormField(
-                    controller: orderNumber,
-                    decoration: const InputDecoration(
-                      prefixIcon: const Icon(Icons.numbers_outlined),
-                      border: OutlineInputBorder(),
-                      labelText: 'Order Number',
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  TextFormField(
-                      controller: retailerName,
-                      decoration: const InputDecoration(
-                        prefixIcon: const Icon(Icons.person),
-                        border: OutlineInputBorder(),
-                        labelText: 'Order Retailer Name',
-                      ),
-                    ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-
-                        Expanded(
-
-                          child: TextFormField(
-                          controller: NumOfItems,
-                          obscureText: true,
-                          decoration: const InputDecoration(
-                          prefixIcon: const Icon(Icons.numbers_outlined),
-
-                          labelText: 'Number of Items',
-                          ),
-                          ),
-                        ),
-
-                    Expanded(
-                      child: DropdownSearch<String>(
-                        popupProps: PopupProps.menu(
-                          showSelectedItems: true,
-
-                        ),
-                        items: ["Brazil", "Italia", "Tunisia", 'Canada', ],
-                        dropdownDecoratorProps: DropDownDecoratorProps(
-                          dropdownSearchDecoration: InputDecoration(
-
-                          ),
-                        ),
-                        onChanged: print,
-                        selectedItem: "Choose a Product",
-
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    TextFormField(
+                      controller: orderNumber,
+                      decoration: const InputDecoration(
+                        prefixIcon: const Icon(Icons.numbers_outlined),
+                        border: OutlineInputBorder(),
+                        labelText: 'Order Number',
                       ),
                     ),
-                  ],
-                  ),
-
-                  const SizedBox(
-                    height: 8,
-                  ),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     TextFormField(
-                      controller: billingAddress,
+                        controller: retailerName,
+                        decoration: const InputDecoration(
+                          prefixIcon: const Icon(Icons.person),
+                          border: OutlineInputBorder(),
+                          labelText: 'Order Retailer Name',
+                        ),
+                      ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                          Expanded(
+                              child: Container(
+                                height: MediaQuery.of(context).size.height*0.08,
+                                width: MediaQuery.of(context).size.width*0.4,
+                                margin: EdgeInsets.only(right: 10, bottom: 10),
+                                child: TextFormField(
+                                controller: NumOfItems,
+
+                                decoration: const InputDecoration(
+                                prefixIcon: const Icon(Icons.numbers_outlined),
+
+                                labelText: 'Number of Items',
+                                ),
+                                ),
+                              )
+                          ),
+
+                      Expanded(
+                        // height: MediaQuery.of(context).size.height*0.095,
+                        // width: MediaQuery.of(context).size.width*0.4,
+                        child: DropdownSearch<String>(
+                          popupProps: PopupProps.menu(
+                            showSelectedItems: true,
+
+                          ),
+                          items: ["Brazil", "Italia", "Tunisia", 'Canada', 'Canada', ],
+                          dropdownDecoratorProps: DropDownDecoratorProps(
+                            dropdownSearchDecoration: InputDecoration(
+
+                            ),
+                          ),
+                          onChanged: print,
+                          selectedItem: "Choose a Product",
+
+                        ),
+                      ),
+                    ],
+                    ),
+
+                    const SizedBox(
+                      height: 8,
+                    ),
+                      TextFormField(
+                        controller: billingAddress,
+                        obscureText: true,
+                        decoration: const InputDecoration(
+                          prefixIcon: const Icon(Icons.home),
+                          border: OutlineInputBorder(),
+                          labelText: 'Billing Address',
+                        ),
+                      ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    TextFormField(
+                      controller: shippingAddress,
                       obscureText: true,
                       decoration: const InputDecoration(
                         prefixIcon: const Icon(Icons.home),
                         border: OutlineInputBorder(),
-                        labelText: 'Billing Addresss',
+                        labelText: 'Shipping Address',
                       ),
                     ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  TextFormField(
-                    controller: shippingAddress,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      prefixIcon: const Icon(Icons.home),
-                      border: OutlineInputBorder(),
-                      labelText: 'Shipping Addresss',
-                    ),
-                  ),
-
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -380,7 +387,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 // Categories Widgets
         Container(
-          padding: EdgeInsets.only(top: 20),
+          padding: EdgeInsets.only(top: 30),
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -470,73 +477,10 @@ class _MyHomePageState extends State<MyHomePage> {
     ),
     ),
     ),
+      bottomNavigationBar: BottomNavigation(),
 
 
     );
   }
 }
 
-// body: Stepper(
-// type: StepperType.horizontal,
-// currentStep: _activeStepIndex,
-// controlsBuilder: (BuildContext context, ControlsDetails controls) {
-// return Row(
-// crossAxisAlignment: CrossAxisAlignment.end,
-// mainAxisAlignment: MainAxisAlignment.spaceBetween,
-// children: <Widget>[
-// SizedBox(
-// width: 160,
-// height: 50,
-// child: ElevatedButton(
-// onPressed: controls.onStepContinue,
-// child: _activeStepIndex != 2
-// ? const Text("Next")
-//     : const Text("Make Payment"),
-// style: ElevatedButton.styleFrom(
-// backgroundColor: Style.blueAccentPageBackgroundColor,
-// ),
-// ),
-// ),
-// SizedBox(
-// width: 160,
-// height: 50,
-// child: ElevatedButton(
-// onPressed: controls.onStepCancel,
-// child: const Text('Cancel'),
-// style: ElevatedButton.styleFrom(
-// backgroundColor: Colors.white,
-// foregroundColor: Style.blueAccentPageBackgroundColor,
-// side: const BorderSide(
-// width: 1.0,
-// color: Colors.lightBlueAccent,
-// )),
-// ),
-// ),
-// ],
-// );
-// },
-// steps: stepList(),
-// onStepContinue: () {
-// if (_activeStepIndex < (stepList().length - 1)) {
-// setState(() {
-// _activeStepIndex += 1;
-// });
-// } else {
-// print('Submited');
-// }
-// },
-// onStepCancel: () {
-// if (_activeStepIndex == 0) {
-// return;
-// }
-//
-// setState(() {
-// _activeStepIndex -= 1;
-// });
-// },
-// onStepTapped: (int index) {
-// setState(() {
-// _activeStepIndex = index;
-// });
-// },
-// ),
