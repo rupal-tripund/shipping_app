@@ -10,12 +10,56 @@ class CancelOrder extends StatefulWidget {
 
 class _CancelOrderState extends State<CancelOrder> {
   final _formKey = GlobalKey<FormState>();
-  String status = "";
-  List<String> statusList = [
+  String _status = "";
+  List<String> _statusList = [
     "First stage",
     "Second Stage",
     "Third Stage",
   ];
+
+  List<FocusNode> _nodes = [];
+  List<Color> _colors = [];
+
+  void _addDataInList(){
+    for(int i = 0; i < 4; i++){
+      _nodes.add(FocusNode());
+      _colors.add(Style.defaultTextFieldIconColor);
+    }
+    _changeIconColor();
+  }
+
+  void _changeIconColor() {
+    for(int i = 0; i < _nodes.length; i++){
+      _nodes[i].addListener(() {
+        setState(() {
+          if(_colors[i] != Style.errorTextFieldIconColor){
+            if(_nodes[i].hasFocus){
+              _colors[i] = Style.blueAccentPageBackgroundColor;
+            }else{
+              _colors[i] = Style.defaultTextFieldIconColor;
+            }
+          }
+        });
+      });
+    }
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    _addDataInList();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    for(int i = 0; i < _nodes.length; i++){
+      _nodes[i].dispose();
+    }
+    _nodes = [];
+    _colors = [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,8 +168,9 @@ class _CancelOrderState extends State<CancelOrder> {
                         children: <Widget>[
                          DropdownButtonHideUnderline(
                               child: DropdownButtonFormField(
+                                focusNode: _nodes[0],
                                 decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.timelapse_outlined),
+                                  prefixIcon: Icon(Icons.timelapse_outlined, color: _colors[0]),
                                   hintText: 'Please select status',
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(13.0),
@@ -135,15 +180,15 @@ class _CancelOrderState extends State<CancelOrder> {
                                       borderRadius: BorderRadius.circular(13.0)
                                   ),
                                 ),
-                                value: status.isEmpty ? null : status,
+                                value: _status.isEmpty ? null : _status,
                                 isDense: true,
                                 isExpanded: true,
                                 onChanged: (newValue) {
                                   setState(() {
-                                    status = newValue!;
+                                    _status = newValue!;
                                   });
                                 },
-                                items: statusList.map(
+                                items: _statusList.map(
                                         (item) {
                                       return DropdownMenuItem(
                                         value: item,
@@ -153,8 +198,18 @@ class _CancelOrderState extends State<CancelOrder> {
                                 ).toList(),
                                 validator: (value){
                                   if(value == null) {
+                                    setState(() {
+                                      _colors[0] = Style.errorTextFieldIconColor;
+                                    });
                                     return 'This field is required';
                                   }else{
+                                    setState(() {
+                                      if(_nodes[0].hasFocus){
+                                        _colors[0] = Style.blueAccentPageBackgroundColor;
+                                      }else{
+                                        _colors[0] = Style.defaultTextFieldIconColor;
+                                      }
+                                    });
                                     return null;
                                   }
                                 },
@@ -164,10 +219,11 @@ class _CancelOrderState extends State<CancelOrder> {
                             height: Style.paddingHeight / 1.5,
                           ),
                           TextFormField(
+                            focusNode: _nodes[1],
                             decoration: InputDecoration(
-                              prefixIcon: const Padding(
+                              prefixIcon: Padding(
                                 padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-                                child: Icon(Icons.question_answer_outlined),
+                                child: Icon(Icons.question_answer_outlined ,  color: _colors[1]),
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(13.0),
@@ -180,10 +236,23 @@ class _CancelOrderState extends State<CancelOrder> {
                             ),
                             validator: (value){
                               if(value!.isEmpty) {
+                                setState(() {
+                                  _colors[1] = Style.errorTextFieldIconColor;
+                                });
                                 return 'This field is required';
                               }else if(!RegExp(r'^[A-Z a-z\d]+$').hasMatch(value)) {
+                                setState(() {
+                                  _colors[1] = Style.errorTextFieldIconColor;
+                                });
                                 return 'Invalid input';
                               }else{
+                                setState(() {
+                                  if(_nodes[1].hasFocus){
+                                    _colors[1] = Style.blueAccentPageBackgroundColor;
+                                  }else{
+                                    _colors[1] = Style.defaultTextFieldIconColor;
+                                  }
+                                });
                                 return null;
                               }
                             },
@@ -193,8 +262,9 @@ class _CancelOrderState extends State<CancelOrder> {
                             height: Style.paddingHeight / 1.5,
                           ),
                           TextFormField(
+                            focusNode: _nodes[2],
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.monetization_on_outlined),
+                              prefixIcon: Icon(Icons.monetization_on_outlined ,  color: _colors[2]),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(13.0),
                               ),
@@ -206,10 +276,23 @@ class _CancelOrderState extends State<CancelOrder> {
                             ),
                             validator: (value){
                               if(value!.isEmpty) {
+                                setState(() {
+                                  _colors[2] = Style.errorTextFieldIconColor;
+                                });
                                 return 'This field is required';
                               }else if(!RegExp(r'^\d+$').hasMatch(value)) {
+                                setState(() {
+                                  _colors[2] = Style.errorTextFieldIconColor;
+                                });
                                 return 'Invalid input';
                               }else{
+                                setState(() {
+                                  if(_nodes[2].hasFocus){
+                                    _colors[2] = Style.blueAccentPageBackgroundColor;
+                                  }else{
+                                    _colors[2] = Style.defaultTextFieldIconColor;
+                                  }
+                                });
                                 return null;
                               }
                             },
@@ -218,8 +301,9 @@ class _CancelOrderState extends State<CancelOrder> {
                             height: Style.paddingHeight / 1.5,
                           ),
                           TextFormField(
+                            focusNode: _nodes[3],
                             decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.currency_exchange),
+                              prefixIcon: Icon(Icons.currency_exchange,  color: _colors[3]),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(13.0),
                               ),
@@ -231,10 +315,23 @@ class _CancelOrderState extends State<CancelOrder> {
                             ),
                             validator: (value){
                               if(value!.isEmpty) {
+                                setState(() {
+                                  _colors[3] = Style.errorTextFieldIconColor;
+                                });
                                 return 'This field is required';
                               }else if(!RegExp(r'^\d+$').hasMatch(value)) {
+                                setState(() {
+                                  _colors[3] = Style.errorTextFieldIconColor;
+                                });
                                 return 'Invalid input';
                               }else{
+                                setState(() {
+                                  if(_nodes[3].hasFocus){
+                                    _colors[3] = Style.blueAccentPageBackgroundColor;
+                                  }else{
+                                    _colors[3] = Style.defaultTextFieldIconColor;
+                                  }
+                                });
                                 return null;
                               }
                             },

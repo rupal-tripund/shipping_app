@@ -20,6 +20,10 @@ class _LoginState extends State<Login> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  Color _emailColor = Style.defaultTextFieldIconColor;
+  Color _passwordColor = Style.defaultTextFieldIconColor;
+  final _emailFocus = FocusNode();
+  final _passwordFocus = FocusNode();
   int validate(){
     if(formKey.currentState!.validate()){
       return 1;
@@ -27,6 +31,31 @@ class _LoginState extends State<Login> {
     else{
       return 0;
     }
+  }
+
+    void _changeIconColorOnFocus(){
+     _emailFocus.addListener(() {
+       setState(() {
+         if(_emailColor != Style.errorTextFieldIconColor){
+           if(_emailFocus.hasFocus){
+             _emailColor = Style.blueAccentPageBackgroundColor;
+           }else{
+             _emailColor = Style.defaultTextFieldIconColor;
+           }
+         }
+       });
+     });
+     _passwordFocus.addListener(() {
+       setState(() {
+         if(_passwordColor != Style.errorTextFieldIconColor){
+           if(_passwordFocus.hasFocus){
+             _passwordColor = Style.blueAccentPageBackgroundColor;
+           }else{
+             _passwordColor = Style.defaultTextFieldIconColor;
+           }
+         }
+       });
+     });
   }
 
   Future<int> authenticate(String email, String password) async{
@@ -48,6 +77,11 @@ class _LoginState extends State<Login> {
       print('Logged in failed');
       return 0;
     }
+  }
+  @override
+  void initState() {
+    super.initState();
+    _changeIconColorOnFocus();
   }
 
   @override
@@ -114,21 +148,34 @@ class _LoginState extends State<Login> {
                     child: Column(
                       children: <Widget>[
                         TextFormField(
+                          focusNode: _emailFocus,
                           controller: emailController,
                           validator: (UserNameValue) {
-
                             if (UserNameValue!.isEmpty) {
+                              setState(() {
+                                _emailColor = Style.errorTextFieldIconColor;
+                              });
                               return 'Please Enter a valid Username';
                             }
                             else if(!EmailValidator.validate(UserNameValue)){
+                              setState(() {
+                                _emailColor = Style.errorTextFieldIconColor;
+                              });
                               return 'Please Enter a valid Email';
                             }
                             else {
+                              setState(() {
+                                if(_emailFocus.hasFocus){
+                                  _emailColor = Style.blueAccentPageBackgroundColor;
+                                }else{
+                                  _emailColor = Style.defaultTextFieldIconColor;
+                                }
+                              });
                               return null;
                             }
                           },
                           decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.email),
+                            prefixIcon: Icon(Icons.email, color: _emailColor),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15.0),
                             ),
@@ -149,10 +196,11 @@ class _LoginState extends State<Login> {
                           height: Style.paddingHeight,
                         ),
                         TextFormField(
+                          focusNode: _passwordFocus,
                           obscureText: _obscureText,
                           controller: passwordController,
                           decoration: InputDecoration(
-                              prefixIcon: const Icon(Icons.lock),
+                              prefixIcon: Icon(Icons.lock, color: _passwordColor,),
                               // suffixIcon: const Icon(Icons.remove_red_eye_rounded),
                               suffixIcon: GestureDetector(
                                 onTap: () {
@@ -161,8 +209,10 @@ class _LoginState extends State<Login> {
                                   });
                                 },
                                 child: Icon(_obscureText
-                                ?Icons.visibility
-                                    :Icons.visibility_off),
+                                  ?Icons.visibility
+                                  :Icons.visibility_off,
+                                  color: _passwordColor,
+                                  ),
                                 ),
 
                               border: OutlineInputBorder(
@@ -183,12 +233,22 @@ class _LoginState extends State<Login> {
 
                           validator: (value)  {
                         if(value!.isEmpty){
-                        return "Please Enter a valid Password";
+                          setState(() {
+                            _passwordColor = Style.errorTextFieldIconColor;
+                          });
+                          return "Please Enter a valid Password";
                         }
                         else{
+                          setState(() {
+                            if(_passwordFocus.hasFocus){
+                              _passwordColor = Style.blueAccentPageBackgroundColor;
+                            }else{
+                              _passwordColor = Style.defaultTextFieldIconColor;
+                            }
+                          });
                           return null;
                         }
-                        },
+                      },
                           // obscureText: true,
                         ),
 
@@ -219,47 +279,47 @@ class _LoginState extends State<Login> {
                           ],
                         ),
                         SizedBox(
-                          height: Style.paddingHeight * 5,
+                          height: Style.paddingHeight * 4,
                         ),
 
-                        Container(
-                          padding: const EdgeInsets.all(20),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              color:Style.blueAccentPageBackgroundColor,
-                              borderRadius: BorderRadius.all(Radius.circular(15))
-                          ),
-                          child: InkWell(
-                            onTap: () async{
-                              final isValid = validate();
-                              if (isValid == 1){
-                                final isAuthenticated = await authenticate(emailController.text.toString(), passwordController.text.toString());
-                                if(isAuthenticated==1){
-                                  print(context);
-                                  Navigator.push(
+                        InkWell(
+                          onTap: () async {
+                            final isValid = validate();
+                            if (isValid == 1){
+                              final isAuthenticated = await authenticate(emailController.text.toString(), passwordController.text.toString());
+                              if(isAuthenticated==1){
+                                print(context);
+                                Navigator.push(
                                   context,
-                                    MaterialPageRoute(
-                                      builder: (context) => HomePage(),
-                                    ),
-                                  );
-                                }
-                              }
-                            },
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'Login ',
-                                  style: TextStyle(
-                                    fontSize: Style.sizeButtonText,
-                                    fontWeight: FontWeight.bold,
-                                    color: Style.primaryBackgroundColor,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomePage(),
                                   ),
-                                ),
-                              ],
+                                );
+                              }
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(20),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color:Style.blueAccentPageBackgroundColor,
+                                borderRadius: BorderRadius.all(Radius.circular(15))
                             ),
-                          ),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Login ',
+                                    style: TextStyle(
+                                      fontSize: Style.sizeButtonText,
+                                      fontWeight: FontWeight.bold,
+                                      color: Style.primaryBackgroundColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
 
@@ -283,7 +343,9 @@ class BackArrowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pop(context);
+      },
       icon: const Icon(Icons.arrow_circle_left_outlined),
       color: Style.iconBackgroundColor,
       iconSize: Style.sizeIcon,

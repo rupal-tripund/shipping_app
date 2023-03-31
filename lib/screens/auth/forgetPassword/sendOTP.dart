@@ -2,8 +2,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import '../../../constants/styles.dart';
 
-TextEditingController emailController = TextEditingController();
-TextEditingController OTPController = TextEditingController();
+TextEditingController _emailController = TextEditingController();
+TextEditingController _OTPController = TextEditingController();
 
 class CheckOTP extends StatelessWidget {
   const CheckOTP({Key? key}) : super(key: key);
@@ -13,11 +13,11 @@ class CheckOTP extends StatelessWidget {
     var argument = ModalRoute.of(context)?.settings.arguments as Set<String>;
     if(argument.elementAt(0).isEmpty){
       Navigator.pop(context, '/forgetPassword/send-otp');
-      emailController..text = "";
-      OTPController..text = "";
+      _emailController..text = "";
+      _OTPController..text = "";
     }
-    emailController..text = argument.elementAt(0);
-    OTPController..text = "";
+    _emailController..text = argument.elementAt(0);
+    _OTPController..text = "";
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Style.blueAccentPageBackgroundColor,
@@ -107,8 +107,8 @@ class BackArrowWidget extends StatelessWidget {
     return IconButton(
       onPressed: () {
         Navigator.pop(context, '/forgetPassword/send-otp');
-        emailController..text = "";
-        OTPController..text = "";
+        _emailController..text = "";
+        _OTPController..text = "";
       },
       icon: const Icon(Icons.arrow_circle_left_outlined),
       color: Style.iconBackgroundColor,
@@ -145,8 +145,49 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  bool? check = false;
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  List<FocusNode> _nodes = [];
+  List<Color> _colors = [];
+
+  void _addDataInList(){
+    for(int i = 0; i < 2; i++){
+      _nodes.add(FocusNode());
+      _colors.add(Style.defaultTextFieldIconColor);
+    }
+    _changeIconColor();
+  }
+
+  void _changeIconColor() {
+    for(int i = 0; i < _nodes.length; i++){
+      _nodes[i].addListener(() {
+        setState(() {
+          if(_colors[i] != Style.errorTextFieldIconColor){
+            if(_nodes[i].hasFocus){
+              _colors[i] = Style.blueAccentPageBackgroundColor;
+            }else{
+              _colors[i] = Style.defaultTextFieldIconColor;
+            }
+          }
+        });
+      });
+    }
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    _addDataInList();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    for(int i = 0; i < _nodes.length; i++){
+      _nodes[i].dispose();
+    }
+    _nodes = [];
+    _colors = [];
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -172,13 +213,14 @@ class _FormWidgetState extends State<FormWidget> {
                   ? Style.paddingHeight : Style.paddingHeight * 3,
             ),
             child: Form(
-              key: formKey,
+              key: _formKey,
               child: Column(
                 children: <Widget>[
                   TextFormField(
-                    controller: emailController,
+                    focusNode: _nodes[0],
+                    controller: _emailController,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.email),
+                      prefixIcon: Icon(Icons.email ,color: _colors[0]),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
                       ),
@@ -190,10 +232,23 @@ class _FormWidgetState extends State<FormWidget> {
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
+                        setState(() {
+                          _colors[0] = Style.errorTextFieldIconColor;
+                        });
                         return 'This field is required';
                       }else if(!EmailValidator.validate(value)){
+                        setState(() {
+                          _colors[0] = Style.errorTextFieldIconColor;
+                        });
                         return 'Invalid Email';
                       }else{
+                        setState(() {
+                          if(_nodes[0].hasFocus){
+                            _colors[0] = Style.blueAccentPageBackgroundColor;
+                          }else{
+                            _colors[0] = Style.defaultTextFieldIconColor;
+                          }
+                        });
                         return null;
                       }
                     },
@@ -203,10 +258,11 @@ class _FormWidgetState extends State<FormWidget> {
                     height: Style.paddingHeight,
                   ),
                   TextFormField(
+                    focusNode: _nodes[1],
                     maxLength: 4,
-                    controller: OTPController,
+                    controller: _OTPController,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_clock),
+                      prefixIcon: Icon(Icons.lock_clock ,color: _colors[1]),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
                       ),
@@ -218,12 +274,28 @@ class _FormWidgetState extends State<FormWidget> {
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
+                        setState(() {
+                          _colors[1] = Style.errorTextFieldIconColor;
+                        });
                         return 'This field is required';
                       }else if(!RegExp(r"^\d+$").hasMatch(value)){
+                        setState(() {
+                          _colors[1] = Style.errorTextFieldIconColor;
+                        });
                         return 'Invalid OTP';
                       }else if(value.length < 3){
+                        setState(() {
+                          _colors[1] = Style.errorTextFieldIconColor;
+                        });
                         return 'Invalid OTP';
                       }else{
+                        setState(() {
+                          if(_nodes[1].hasFocus){
+                            _colors[1] = Style.blueAccentPageBackgroundColor;
+                          }else{
+                            _colors[1] = Style.defaultTextFieldIconColor;
+                          }
+                        });
                         return null;
                       }
                     },
@@ -235,10 +307,10 @@ class _FormWidgetState extends State<FormWidget> {
 
                   InkWell(
                     onTap: () {
-                      if(formKey.currentState!.validate()){
+                      if(_formKey.currentState!.validate()){
                         Navigator.pushReplacementNamed(context, '/forgetPassword/reset-password');
-                        emailController..text = "";
-                        OTPController..text = "";
+                        _emailController..text = "";
+                        _OTPController..text = "";
                       }
                     },
                     child: Container(

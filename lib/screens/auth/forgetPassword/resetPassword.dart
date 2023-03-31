@@ -131,12 +131,56 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  bool? check = false;
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
   bool _obscureText2 = true;
-  final formKey = GlobalKey<FormState>();
+  List<FocusNode> _nodes = [];
+  List<Color> _colors = [];
+  List<TextEditingController> _controllers = [];
+
+  void _addDataInList(){
+    for(int i = 0; i < 2; i++){
+      _nodes.add(FocusNode());
+      _colors.add(Style.defaultTextFieldIconColor);
+      _controllers.add(TextEditingController());
+    }
+    _changeIconColor();
+  }
+
+  void _changeIconColor() {
+    for(int i = 0; i < _nodes.length; i++){
+      _nodes[i].addListener(() {
+        setState(() {
+          if(_colors[i] != Style.errorTextFieldIconColor){
+            if(_nodes[i].hasFocus){
+              _colors[i] = Style.blueAccentPageBackgroundColor;
+            }else{
+              _colors[i] = Style.defaultTextFieldIconColor;
+            }
+          }
+        });
+      });
+    }
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    _addDataInList();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    for(int i = 0; i < _nodes.length; i++){
+      _nodes[i].dispose();
+      _controllers[i].dispose();
+    }
+    _nodes = [];
+    _colors = [];
+    _controllers = [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -162,14 +206,15 @@ class _FormWidgetState extends State<FormWidget> {
                   ? Style.paddingHeight : Style.paddingHeight * 3,
             ),
             child: Form(
-              key: formKey,
+              key: _formKey,
               child: Column(
                 children: <Widget>[
                   TextFormField(
+                    focusNode: _nodes[0],
                     obscureText: _obscureText,
-                    controller: passwordController,
+                    controller: _controllers[0],
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock),
+                      prefixIcon: Icon(Icons.lock, color: _colors[0]),
                       suffixIcon: GestureDetector(
                         onTap: () {
                           setState(() {
@@ -178,7 +223,9 @@ class _FormWidgetState extends State<FormWidget> {
                         },
                         child: Icon(_obscureText
                             ?Icons.visibility
-                            :Icons.visibility_off),
+                            :Icons.visibility_off ,
+                            color: _colors[0],
+                        ),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
@@ -191,12 +238,28 @@ class _FormWidgetState extends State<FormWidget> {
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
+                        setState(() {
+                          _colors[0] = Style.errorTextFieldIconColor;
+                        });
                         return 'This field is required';
-                      }else if(value != confirmPasswordController.value.text){
+                      }else if(value != _controllers[1].value.text){
+                        setState(() {
+                          _colors[0] = Style.errorTextFieldIconColor;
+                        });
                         return 'password and confirm password do not match';
                       }else if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)(?=.*?[!@#\\$&*~]).{8,}$').hasMatch(value)){
+                        setState(() {
+                          _colors[0] = Style.errorTextFieldIconColor;
+                        });
                         return 'weak password enter strong password';
                       }else{
+                        setState(() {
+                          if(_nodes[0].hasFocus){
+                            _colors[0] = Style.blueAccentPageBackgroundColor;
+                          }else{
+                            _colors[0] = Style.defaultTextFieldIconColor;
+                          }
+                        });
                         return null;
                       }
                     },
@@ -205,10 +268,11 @@ class _FormWidgetState extends State<FormWidget> {
                     height: Style.paddingHeight,
                   ),
                   TextFormField(
+                    focusNode: _nodes[1],
                     obscureText: _obscureText2,
-                    controller: confirmPasswordController,
+                    controller: _controllers[1],
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock),
+                      prefixIcon: Icon(Icons.lock, color: _colors[1]),
                       suffixIcon: GestureDetector(
                         onTap: () {
                           setState(() {
@@ -217,7 +281,9 @@ class _FormWidgetState extends State<FormWidget> {
                         },
                         child: Icon(_obscureText2
                             ?Icons.visibility
-                            :Icons.visibility_off),
+                            :Icons.visibility_off,
+                          color: _colors[1],
+                        ),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
@@ -230,12 +296,28 @@ class _FormWidgetState extends State<FormWidget> {
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
+                        setState(() {
+                          _colors[1]= Style.errorTextFieldIconColor;
+                        });
                         return 'This field is required';
-                      }else if(value != passwordController.value.text){
+                      }else if(value != _controllers[0].value.text){
+                        setState(() {
+                          _colors[1] = Style.errorTextFieldIconColor;
+                        });
                         return 'password and confirm password do not match';
                       }else if(!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)(?=.*?[!@#\\$&*~]).{8,}$').hasMatch(value)){
+                        setState(() {
+                          _colors[1] = Style.errorTextFieldIconColor;
+                        });
                         return 'weak password enter strong password';
                       }else{
+                        setState(() {
+                          if(_nodes[1].hasFocus){
+                            _colors[1] = Style.blueAccentPageBackgroundColor;
+                          }else{
+                            _colors[1] = Style.defaultTextFieldIconColor;
+                          }
+                        });
                         return null;
                       }
                     },
@@ -247,7 +329,7 @@ class _FormWidgetState extends State<FormWidget> {
 
                   InkWell(
                     onTap: () {
-                      if(formKey.currentState!.validate()){
+                      if(_formKey.currentState!.validate()){
                         Navigator.pop(context, '/forgetPassword/reset-password');
                       }
                     },

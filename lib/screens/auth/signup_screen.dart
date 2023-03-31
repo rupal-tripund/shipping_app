@@ -130,8 +130,51 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  bool? check = false;
-  final formKey = GlobalKey<FormState>();
+  bool? _check = false;
+  final _formKey = GlobalKey<FormState>();
+  List<FocusNode> _nodes = [];
+  List<Color> _colors = [];
+
+  void _addDataInList(){
+    for(int i = 0; i < 5; i++){
+      _nodes.add(FocusNode());
+      _colors.add(Style.defaultTextFieldIconColor);
+    }
+    _changeIconColor();
+  }
+
+  void _changeIconColor() {
+    for(int i = 0; i < _nodes.length; i++){
+      _nodes[i].addListener(() {
+        setState(() {
+          if(_colors[i] != Style.errorTextFieldIconColor){
+            if(_nodes[i].hasFocus){
+              _colors[i] = Style.blueAccentPageBackgroundColor;
+            }else{
+              _colors[i] = Style.defaultTextFieldIconColor;
+            }
+          }
+        });
+      });
+    }
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    _addDataInList();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    for(int i = 0; i < _nodes.length; i++){
+      _nodes[i].dispose();
+    }
+    _nodes = [];
+    _colors = [];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -157,12 +200,13 @@ class _FormWidgetState extends State<FormWidget> {
                   ? Style.paddingHeight : Style.paddingHeight * 3,
             ),
             child: Form(
-              key: formKey,
+              key: _formKey,
               child: Column(
                 children: <Widget>[
                   TextFormField(
+                    focusNode: _nodes[0],
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.person),
+                      prefixIcon: Icon(Icons.person,color: _colors[0]),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
                       ),
@@ -174,10 +218,23 @@ class _FormWidgetState extends State<FormWidget> {
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
+                        setState(() {
+                          _colors[0] = Style.errorTextFieldIconColor;
+                        });
                         return 'This field is required';
                       }else if(!RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                        setState(() {
+                          _colors[0] = Style.errorTextFieldIconColor;
+                        });
                         return 'Name field accept alphabets only';
                       }else{
+                        setState(() {
+                          if(_nodes[0].hasFocus){
+                            _colors[0] = Style.blueAccentPageBackgroundColor;
+                          }else{
+                            _colors[0] = Style.defaultTextFieldIconColor;
+                          }
+                        });
                         return null;
                       }
                     },
@@ -186,8 +243,9 @@ class _FormWidgetState extends State<FormWidget> {
                     height: Style.paddingHeight,
                   ),
                   TextFormField(
+                    focusNode: _nodes[1],
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.email),
+                      prefixIcon: Icon(Icons.email, color: _colors[1]),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
                       ),
@@ -199,10 +257,23 @@ class _FormWidgetState extends State<FormWidget> {
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
+                        setState(() {
+                          _colors[1] = Style.errorTextFieldIconColor;
+                        });
                         return 'This field is required';
                       }else if(!EmailValidator.validate(value)){
+                        setState(() {
+                          _colors[1] = Style.errorTextFieldIconColor;
+                        });
                         return 'Invalid Email';
                       }else{
+                        setState(() {
+                          if(_nodes[1].hasFocus){
+                            _colors[1] = Style.blueAccentPageBackgroundColor;
+                          }else{
+                            _colors[1] = Style.defaultTextFieldIconColor;
+                          }
+                        });
                         return null;
                       }
                     },
@@ -211,10 +282,11 @@ class _FormWidgetState extends State<FormWidget> {
                     height: Style.paddingHeight,
                   ),
                   TextFormField(
+                    focusNode: _nodes[2],
                     decoration: InputDecoration(
-                      prefixIcon: const Padding(
+                      prefixIcon: Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-                        child: Icon(Icons.local_shipping),
+                        child: Icon(Icons.local_shipping , color: _colors[2]),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
@@ -227,10 +299,23 @@ class _FormWidgetState extends State<FormWidget> {
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
+                        setState(() {
+                          _colors[2] = Style.errorTextFieldIconColor;
+                        });
                         return 'This field is required';
                       }else if(!RegExp(r'^[#.\da-zA-Z\s,-]+$').hasMatch(value)){
+                        setState(() {
+                          _colors[2] = Style.errorTextFieldIconColor;
+                        });
                         return 'Invalid shipping address';
                       }else{
+                        setState(() {
+                          if(_nodes[2].hasFocus){
+                            _colors[2] = Style.blueAccentPageBackgroundColor;
+                          }else{
+                            _colors[2] = Style.defaultTextFieldIconColor;
+                          }
+                        });
                         return null;
                       }
                     },
@@ -242,12 +327,12 @@ class _FormWidgetState extends State<FormWidget> {
                   ),
 
                   CheckboxListTile( //checkbox positioned at left
-                    value: check,
+                    value: _check,
                     controlAffinity: ListTileControlAffinity.leading,
                     onChanged: (bool? value) {
                       setState(() {
-                        check = value;
-                        if(check == true){
+                        _check = value;
+                        if(_check == true){
 
                         }else{
 
@@ -268,10 +353,11 @@ class _FormWidgetState extends State<FormWidget> {
                   ),
 
                   TextFormField(
+                    focusNode: _nodes[3],
                     decoration: InputDecoration(
-                      prefixIcon: const Padding(
+                      prefixIcon: Padding(
                         padding: EdgeInsets.fromLTRB(0, 0, 0, 80),
-                        child: Icon(Icons.account_balance_wallet),
+                        child: Icon(Icons.account_balance_wallet, color: _colors[3]),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
@@ -284,10 +370,23 @@ class _FormWidgetState extends State<FormWidget> {
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
+                        setState(() {
+                          _colors[3] =Style.errorTextFieldIconColor;
+                        });
                         return 'This field is required';
                       }else if(!RegExp(r'^[#.\da-zA-Z\s,-]+$').hasMatch(value)){
+                        setState(() {
+                          _colors[3] =Style.errorTextFieldIconColor;
+                        });
                         return 'Invalid billing address';
                       }else{
+                        setState(() {
+                          if(_nodes[3].hasFocus){
+                            _colors[3] = Style.blueAccentPageBackgroundColor;
+                          }else{
+                            _colors[3] = Style.defaultTextFieldIconColor;
+                          }
+                        });
                         return null;
                       }
                     },
@@ -299,8 +398,9 @@ class _FormWidgetState extends State<FormWidget> {
                   ),
 
                   TextFormField(
+                    focusNode: _nodes[4],
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.phone),
+                      prefixIcon: Icon(Icons.phone, color:_colors[4]),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
                       ),
@@ -312,10 +412,23 @@ class _FormWidgetState extends State<FormWidget> {
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
+                        setState(() {
+                          _colors[4] =Style.errorTextFieldIconColor;
+                        });
                         return 'This field is required';
                       }else if(!RegExp(r'^(?:[+0]9)?\d{10}$').hasMatch(value)){
+                        setState(() {
+                          _colors[4] =Style.errorTextFieldIconColor;
+                        });
                         return 'Invalid phone number';
                       }else{
+                        setState(() {
+                          if(_nodes[4].hasFocus){
+                            _colors[4] = Style.blueAccentPageBackgroundColor;
+                          }else{
+                            _colors[4] = Style.defaultTextFieldIconColor;
+                          }
+                        });
                         return null;
                       }
                     },
@@ -327,7 +440,7 @@ class _FormWidgetState extends State<FormWidget> {
 
                   InkWell(
                     onTap: () {
-                      if(formKey.currentState!.validate()){
+                      if(_formKey.currentState!.validate()){
                       }
                     },
                     child: Container(

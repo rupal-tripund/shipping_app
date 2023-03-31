@@ -6,14 +6,17 @@ class Style {
   //colors
   static const primaryThemeColor = Colors.blue;
   static const primaryBackgroundColor = Colors.white;
-  static final blueAccentPageBackgroundColor = Colors.lightBlueAccent[400];
+  static final blueAccentPageBackgroundColor = Colors.lightBlueAccent.shade400;
   static const brightness = Brightness.light;
   static const textColorDark = Colors.white;
   static const textColorLight = Colors.black;
-  static final textColorGrey = Colors.black54;
-  static final iconColor = Colors.lightBlueAccent[400];
+  static const textColorGrey = Colors.black54;
+  static final iconColor = Colors.lightBlueAccent.shade400;
   static const iconBackgroundColor = Colors.white;
   static const redColor = Colors.redAccent;
+  static const defaultTextFieldIconColor = Colors.grey;
+  static final errorTextFieldIconColor = Colors.redAccent.shade200;
+
 
   //font style
   static final sizeTitle = 5 * SizeConfig.textMultiplier;

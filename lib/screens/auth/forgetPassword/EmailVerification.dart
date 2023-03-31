@@ -132,9 +132,29 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  bool? check = false;
-  final formKey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _emailController = TextEditingController();
+  Color _emailColor = Style.defaultTextFieldIconColor;
+  final _emailFocus = FocusNode();
+
+  void _changeIconColorOnFocus(){
+    _emailFocus.addListener(() {
+      setState(() {
+        if(_emailColor != Style.errorTextFieldIconColor){
+          if(_emailFocus.hasFocus){
+            _emailColor = Style.blueAccentPageBackgroundColor;
+          }else{
+            _emailColor = Style.defaultTextFieldIconColor;
+          }
+        }
+      });
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    _changeIconColorOnFocus();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -160,13 +180,14 @@ class _FormWidgetState extends State<FormWidget> {
                   ? Style.paddingHeight : Style.paddingHeight * 3,
             ),
             child: Form(
-              key: formKey,
+              key: _formKey,
               child: Column(
                 children: <Widget>[
                   TextFormField(
-                    controller: emailController,
+                    focusNode: _emailFocus,
+                    controller: _emailController,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.email),
+                      prefixIcon: Icon(Icons.email ,color: _emailColor),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(13.0),
                       ),
@@ -178,10 +199,23 @@ class _FormWidgetState extends State<FormWidget> {
                     ),
                     validator: (value){
                       if(value!.isEmpty) {
+                        setState(() {
+                          _emailColor = Style.errorTextFieldIconColor;
+                        });
                         return 'This field is required';
                       }else if(!EmailValidator.validate(value)){
+                        setState(() {
+                          _emailColor = Style.errorTextFieldIconColor;
+                        });
                         return 'Invalid Email';
                       }else{
+                        setState(() {
+                          if(_emailFocus.hasFocus){
+                            _emailColor = Style.blueAccentPageBackgroundColor;
+                          }else{
+                            _emailColor = Style.defaultTextFieldIconColor;
+                          }
+                        });
                         return null;
                       }
                     },
@@ -193,13 +227,13 @@ class _FormWidgetState extends State<FormWidget> {
 
                   InkWell(
                     onTap: () {
-                      if(formKey.currentState!.validate()){
+                      if(_formKey.currentState!.validate()){
                         Navigator.pushReplacementNamed(
                           context,
                           "/forgetPassword/send-otp",
-                          arguments: {emailController.value.text}
+                          arguments: {_emailController.value.text}
                         );
-                        emailController..text = "";
+                        _emailController..text = "";
                       }
                     },
                     child: Container(
