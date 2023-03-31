@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shipping_app/constants/styles.dart';
 
+import '../screens/new_order_screen.dart';
+import '../screens/product/Order_history.dart';
+import '../widgets/profile_settings.dart';
+
 class SideMenu extends StatelessWidget {
   const SideMenu({Key? key}) : super(key: key);
 
@@ -27,25 +31,37 @@ class SideMenu extends StatelessWidget {
           color: Style.blueAccentPageBackgroundColor,
         ),
       ),
-      ListTile(
-        leading: Icon(Icons.shopping_basket),
-        title: Text(
-          ' Account',
-          style: TextStyle(
-              fontSize: 20.0,
-              color: Colors.grey[800]
+      InkWell(
+        child: ListTile(
+          leading: Icon(Icons.shopping_basket),
+
+          title: Text(
+            ' Account',
+            style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.grey[800]
+            ),
           ),
+          // trailing: ClipOval(
+          //   child: Container(
+          //     color: Colors.red,
+          //     width: 20,
+          //     height: 20,
+          //     child: Center(child: Text('8', style: TextStyle(color: Colors.white, fontSize: 12.0),)),
+          //   ),
+          // ),
+          onTap: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileSettingScreen(),
+
+                ));
+          },
         ),
-        // trailing: ClipOval(
-        //   child: Container(
-        //     color: Colors.red,
-        //     width: 20,
-        //     height: 20,
-        //     child: Center(child: Text('8', style: TextStyle(color: Colors.white, fontSize: 12.0),)),
-        //   ),
-        // ),
-        onTap: null,
       ),
+    InkWell(
+    child:
       ListTile(
         leading: Icon(Icons.shopping_basket),
         title: Text(
@@ -55,16 +71,17 @@ class SideMenu extends StatelessWidget {
             color: Colors.grey[800]
           ),
         ),
-        // trailing: ClipOval(
-        //   child: Container(
-        //     color: Colors.red,
-        //     width: 20,
-        //     height: 20,
-        //     child: Center(child: Text('8', style: TextStyle(color: Colors.white, fontSize: 12.0),)),
-        //   ),
-        // ),
-        onTap: null,
+
+        onTap: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MyHomePage(),
+
+              ));
+        },
       ),
+    ),
       ListTile(
         leading: Icon(Icons.shopping_basket),
         title: Text(
@@ -84,16 +101,25 @@ class SideMenu extends StatelessWidget {
         ),
         onTap: null,
       ),
-      ListTile(
-        leading: Icon(Icons.settings),
-        title: Text(
-          'All Orders',
-          style: TextStyle(
-              fontSize: 20.0,
-              color: Colors.grey[800]
+      InkWell(
+        child: ListTile(
+          leading: Icon(Icons.settings),
+          title: Text(
+            'All Orders',
+            style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.grey[800]
+            ),
           ),
+          onTap: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ListByCategory(),
+
+                ));
+          },
         ),
-        onTap: null,
       ),
       ListTile(
         leading: Icon(Icons.policy),
