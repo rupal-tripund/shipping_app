@@ -29,13 +29,13 @@ class GetOrderDetails extends StatelessWidget {
         backgroundColor: Style.blueAccentPageBackgroundColor,
         leading: IconButton(
           icon: Icon(Icons.arrow_circle_left_outlined),
-          iconSize: Style.sizeIcon / 1.3,
+          iconSize: Style.sizeIcon / 1.2,
           onPressed: () => {},
         ),
         title: Text(
           'View Order Details',
           style: TextStyle(
-            fontSize: Style.sizeButtonText,
+            fontSize: Style.sizeButtonText * 1.3,
             fontWeight: FontWeight.bold,
             color: Style.textColorDark,
           ),
@@ -229,17 +229,6 @@ class GetOrderDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  ElevatedButton(
-                    onPressed: () async{},
-                    child: Text(
-                      "Track Order",
-                      style: TextStyle(
-                        fontSize: Style.sizeButtonText,
-                        fontWeight: FontWeight.bold,
-                        color: Style.textColorDark,
-                      ),
-                    ),
-                  ),
                   ElevatedButton(
                     onPressed: getInvoice,
                     child: Text(
