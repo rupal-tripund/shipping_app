@@ -187,7 +187,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           borderRadius: BorderRadius.all(Radius.circular(15))
                       ),
                       child: InkWell(
-                        onTap: () async{},
+                        onTap: () async {},
                         child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -236,7 +236,6 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
           height: 6,
         ),
         Container(
-
           // height: 50,
           decoration: BoxDecoration(
               color: Colors.white,
@@ -249,8 +248,8 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
               borderRadius: BorderRadius.circular(8)),
           child: TextFormField(
             readOnly: readOnly,
-            onTap: ()=> onTap!(),
-            validator: (input)=> validator(input),
+            onTap: () => onTap!(),
+            validator: (input) => validator(input),
             controller: controller,
             style: GoogleFonts.poppins(
                 fontSize: 14,
@@ -261,7 +260,6 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                 padding: const EdgeInsets.only(left: 10),
                 child: Icon(
                   iconData,
-
                 ),
               ),
               border: InputBorder.none,
@@ -274,10 +272,8 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
 
   Widget greenButton(String title, Function onPressed) {
     return MaterialButton(
-
       height: 50,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-
       onPressed: () => onPressed(),
       child: Text(
         title,
@@ -286,4 +282,25 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
       ),
     );
   }
+}
+
+class CurveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    int curveHeight = 40;
+    Offset controlPoint = Offset(size.width / 2, size.height + curveHeight);
+    Offset endPoint = Offset(size.width, size.height - curveHeight);
+
+    Path path = Path()
+      ..lineTo(0, size.height - curveHeight)
+      ..quadraticBezierTo(
+          controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy)
+      ..lineTo(size.width, 0)
+      ..close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

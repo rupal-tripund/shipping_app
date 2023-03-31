@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shipping_app/constants/styles.dart';
 import 'package:shipping_app/screens/order/cancel_order.dart';
-import 'package:shipping_app/screens/welcome_screen.dart';
+
 import 'package:shipping_app/shared/bottom_navigation.dart';
 import 'package:shipping_app/shared/side_menu.dart';
 import 'package:shipping_app/shared/top_navigation.dart';
+
+import '../order/tracker.dart';
+import '../order/view_order_detail.dart';
 
 
 
@@ -117,7 +120,7 @@ class _ListByCategoryState extends State<ListByCategory> {
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
-                                                  builder: (context) => WelcomeScreen(),
+                                                  builder: (context) => GetOrderDetails(),
 
                                                 ));
                                           },
@@ -203,7 +206,7 @@ class _ListByCategoryState extends State<ListByCategory> {
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                        builder: (context) => CancelOrder(),
+                                                        builder: (context) => TrackOrder(),
 
                                                       ));
                                                 },
