@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shipping_app/constants/styles.dart';
-import '../screens/new_order_screens/stepperWidget.dart';
-import '../screens/order/Order_history.dart';
+import '../screens/list_by_category.dart';
+import '../screens/new_order_screen.dart';
 import '../widgets/profile_settings.dart';
 
 class SideMenu extends StatelessWidget {

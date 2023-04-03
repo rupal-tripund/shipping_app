@@ -4,7 +4,9 @@ import 'package:shipping_app/shared/side_menu.dart';
 import 'package:shipping_app/shared/top_navigation.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:shipping_app/shared/bottom_navigation.dart';
-import 'order/add_order_detail.dart';
+
+import 'order/new_order_screens/step2.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
