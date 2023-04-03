@@ -30,7 +30,9 @@ class GetOrderDetails extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_circle_left_outlined),
           iconSize: Style.sizeIcon / 1.2,
-          onPressed: () => {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: Text(
           'View Order Details',

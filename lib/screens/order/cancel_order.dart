@@ -110,7 +110,9 @@ class _CancelOrderState extends State<CancelOrder> {
                                       icon: Icon(Icons.arrow_circle_left_outlined),
                                       iconSize: Style.sizeIcon,
                                       color: Style.iconBackgroundColor,
-                                      onPressed: () => {},
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
                                     ),
                                   ),
                                 ),

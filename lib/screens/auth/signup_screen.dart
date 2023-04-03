@@ -94,7 +94,9 @@ class BackArrowWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pop(context);
+      },
       icon: const Icon(Icons.arrow_circle_left_outlined),
       color: Style.iconBackgroundColor,
       iconSize: Style.sizeIcon,

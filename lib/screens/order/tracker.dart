@@ -19,7 +19,9 @@ class _TrackOrderState extends State<TrackOrder> {
         leading: IconButton(
           icon: Icon(Icons.arrow_circle_left_outlined),
           iconSize: Style.sizeIcon / 1.2,
-          onPressed: () => {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: Text(
           'Track order',
@@ -72,12 +74,14 @@ class _TrackOrderState extends State<TrackOrder> {
                              SizedBox(
                                width: Style.paddingWidth / 3,
                              ),
-                              Text(
-                                'Order Placed',
-                                style: TextStyle(
-                                  fontSize: Style.sizeButtonText * 1.3,
-                                  fontWeight: FontWeight.w400,
-                                  color: Style.textColorLight,
+                              Expanded(
+                                child: Text(
+                                  'Order Placed',
+                                  style: TextStyle(
+                                    fontSize: Style.sizeButtonText * 1.3,
+                                    fontWeight: FontWeight.w400,
+                                    color: Style.textColorLight,
+                                  ),
                                 ),
                               ),
                           ],
@@ -89,12 +93,14 @@ class _TrackOrderState extends State<TrackOrder> {
                             SizedBox(
                               width: Style.paddingWidth * 5.5,
                             ),
-                           Text(
-                             'we have received your order',
-                             style: TextStyle(
-                               fontSize: Style.sizeButtonText,
-                               fontWeight: FontWeight.w300,
-                               color: Style.textColorLight,
+                           Expanded(
+                             child: Text(
+                               'we have received your order',
+                               style: TextStyle(
+                                 fontSize: Style.sizeButtonText,
+                                 fontWeight: FontWeight.w300,
+                                 color: Style.textColorLight,
+                               ),
                              ),
                            ),
                           ],
