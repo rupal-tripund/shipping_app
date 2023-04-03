@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../constants/styles.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
+import '../product/Order_history.dart';
 import 'download_Invoice.dart';
 
 class GetOrderDetails extends StatelessWidget {
@@ -31,7 +32,11 @@ class GetOrderDetails extends StatelessWidget {
           icon: Icon(Icons.arrow_circle_left_outlined),
           iconSize: Style.sizeIcon / 1.2,
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pop(context,
+                MaterialPageRoute(
+                  builder: (context) => ListByCategory(),
+                ),
+            );
           },
         ),
         title: Text(
