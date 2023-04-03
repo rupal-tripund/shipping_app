@@ -69,16 +69,13 @@ class _TrackOrderState extends State<TrackOrder> {
                                onPressed: () {},
                                icon: const Icon(Icons.print),
                                color: Colors.green.shade500,
-                               iconSize: Style.sizeIcon * 1.3,
-                             ),
-                             SizedBox(
-                               width: Style.paddingWidth / 3,
+                               iconSize: Style.sizeIcon,
                              ),
                               Expanded(
                                 child: Text(
                                   'Order Placed',
                                   style: TextStyle(
-                                    fontSize: Style.sizeButtonText * 1.3,
+                                    fontSize: Style.sizeButtonText,
                                     fontWeight: FontWeight.w400,
                                     color: Style.textColorLight,
                                   ),
@@ -87,11 +84,10 @@ class _TrackOrderState extends State<TrackOrder> {
                           ],
                         ),
                         Row(
-
                           mainAxisAlignment: MainAxisAlignment.start,
                           children:  <Widget>[
                             SizedBox(
-                              width: Style.paddingWidth * 5.5,
+                              width: Style.paddingWidth * 4,
                             ),
                            Expanded(
                              child: Text(
@@ -110,8 +106,8 @@ class _TrackOrderState extends State<TrackOrder> {
                  ),
                  indicatorStyle: IndicatorStyle(
                    color: Colors.green.shade500,
-                   height: 30,
-                   width: 30,
+                   height: Style.sizeButtonText,
+                   width: Style.sizeButtonText,
                  ),
                  afterLineStyle: LineStyle(
                    color: Colors.green.shade500,
@@ -144,15 +140,12 @@ class _TrackOrderState extends State<TrackOrder> {
                             onPressed: () {},
                             icon: const Icon(Icons.shopping_cart),
                             color: Colors.grey,
-                            iconSize: Style.sizeIcon * 1.3,
-                          ),
-                          SizedBox(
-                            width: Style.paddingWidth / 3,
+                            iconSize: Style.sizeIcon,
                           ),
                           Text(
                             'Picked Up',
                             style: TextStyle(
-                              fontSize: Style.sizeButtonText * 1.3,
+                              fontSize: Style.sizeButtonText,
                               fontWeight: FontWeight.w400,
                               color: Style.textColorLight,
                             ),
@@ -163,7 +156,7 @@ class _TrackOrderState extends State<TrackOrder> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children:  <Widget>[
                           SizedBox(
-                            width: Style.paddingWidth * 5.5,
+                            width: Style.paddingWidth * 4,
                           ),
                           Expanded(
                             child: Text(
@@ -181,8 +174,8 @@ class _TrackOrderState extends State<TrackOrder> {
                   ),
                 ),
                 indicatorStyle: IndicatorStyle(
-                  height: 30,
-                  width: 30,
+                  height: Style.sizeButtonText,
+                  width: Style.sizeButtonText,
                 ),
                 afterLineStyle: LineStyle(
 
@@ -213,15 +206,12 @@ class _TrackOrderState extends State<TrackOrder> {
                             onPressed: () {},
                             icon: const Icon(Icons.local_shipping),
                             color: Colors.grey,
-                            iconSize: Style.sizeIcon * 1.3,
-                          ),
-                          SizedBox(
-                            width: Style.paddingWidth / 3,
+                            iconSize: Style.sizeIcon,
                           ),
                           Text(
                             'Shipped',
                             style: TextStyle(
-                              fontSize: Style.sizeButtonText * 1.3,
+                              fontSize: Style.sizeButtonText,
                               fontWeight: FontWeight.w400,
                               color: Style.textColorLight,
                             ),
@@ -232,7 +222,7 @@ class _TrackOrderState extends State<TrackOrder> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children:  <Widget>[
                           SizedBox(
-                            width: Style.paddingWidth * 5.5,
+                            width: Style.paddingWidth * 4,
                           ),
                           Expanded(
                             child: Text(
@@ -250,8 +240,8 @@ class _TrackOrderState extends State<TrackOrder> {
                   ),
                 ),
                 indicatorStyle: IndicatorStyle(
-                  height: 30,
-                  width: 30,
+                  height: Style.sizeButtonText,
+                  width: Style.sizeButtonText,
                 ),
                 afterLineStyle: LineStyle(
                 ),
@@ -281,15 +271,12 @@ class _TrackOrderState extends State<TrackOrder> {
                             onPressed: () {},
                             icon: const Icon(Icons.home),
                             color: Colors.grey,
-                            iconSize: Style.sizeIcon * 1.3,
-                          ),
-                          SizedBox(
-                            width: Style.paddingWidth / 3,
+                            iconSize: Style.sizeIcon,
                           ),
                           Text(
                             'Delivered',
                             style: TextStyle(
-                              fontSize: Style.sizeButtonText * 1.3,
+                              fontSize: Style.sizeButtonText,
                               fontWeight: FontWeight.w400,
                               color: Style.textColorLight,
                             ),
@@ -300,7 +287,7 @@ class _TrackOrderState extends State<TrackOrder> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children:  <Widget>[
                           SizedBox(
-                            width: Style.paddingWidth * 5.5,
+                            width: Style.paddingWidth * 4,
                           ),
                           Expanded(
                             child: Text(
@@ -318,8 +305,8 @@ class _TrackOrderState extends State<TrackOrder> {
                   ),
                 ),
                 indicatorStyle: IndicatorStyle(
-                  height: 30,
-                  width: 30,
+                  height: Style.sizeButtonText,
+                  width: Style.sizeButtonText,
                 ),
                 afterLineStyle: LineStyle(
                 ),
