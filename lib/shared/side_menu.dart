@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shipping_app/constants/styles.dart';
-
-import '../screens/new_order_screen.dart';
-import '../screens/product/Order_history.dart';
+import '../screens/new_order_screens/stepperWidget.dart';
+import '../screens/order/Order_history.dart';
 import '../widgets/profile_settings.dart';
 
 class SideMenu extends StatelessWidget {
@@ -33,7 +32,7 @@ class SideMenu extends StatelessWidget {
       ),
       InkWell(
         child: ListTile(
-          leading: Icon(Icons.shopping_basket),
+          leading: Icon(Icons.person),
 
           title: Text(
             ' Account',
@@ -63,7 +62,7 @@ class SideMenu extends StatelessWidget {
     InkWell(
     child:
       ListTile(
-        leading: Icon(Icons.shopping_basket),
+        leading: Icon(Icons.add),
         title: Text(
             ' New Orders',
           style: TextStyle(
@@ -83,7 +82,7 @@ class SideMenu extends StatelessWidget {
       ),
     ),
       ListTile(
-        leading: Icon(Icons.shopping_basket),
+        leading: Icon(Icons.notification_important_sharp),
         title: Text(
           ' Notification',
           style: TextStyle(
@@ -103,7 +102,7 @@ class SideMenu extends StatelessWidget {
       ),
       InkWell(
         child: ListTile(
-          leading: Icon(Icons.settings),
+          leading: Icon(Icons.bookmark_border),
           title: Text(
             'All Orders',
             style: TextStyle(
@@ -121,8 +120,9 @@ class SideMenu extends StatelessWidget {
           },
         ),
       ),
+      Divider(),
       ListTile(
-        leading: Icon(Icons.policy),
+        leading: Icon(Icons.settings),
         title: Text(
           'Settings',
           style: TextStyle(
@@ -133,7 +133,7 @@ class SideMenu extends StatelessWidget {
         onTap: null,
       ),
       ListTile(
-        leading: Icon(Icons.exit_to_app),
+        leading: Icon(Icons.info_outline),
         title: Text(
           'About Us',
           style: TextStyle(
@@ -144,9 +144,20 @@ class SideMenu extends StatelessWidget {
         onTap: null,
       ),
       ListTile(
-        leading: Icon(Icons.exit_to_app),
+        leading: Icon(Icons.indeterminate_check_box_sharp),
         title: Text(
           'Terms & Condition',
+          style: TextStyle(
+              fontSize: 20.0,
+              color: Colors.grey[800]
+          ),
+        ),
+        onTap: null,
+      ),
+      ListTile(
+        leading: Icon(Icons.indeterminate_check_box_sharp),
+        title: Text(
+          'Logout',
           style: TextStyle(
               fontSize: 20.0,
               color: Colors.grey[800]
