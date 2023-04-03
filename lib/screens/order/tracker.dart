@@ -76,7 +76,6 @@ class _TrackOrderState extends State<TrackOrder> {
                      minHeight: 120,
                    ),
                    child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
                      mainAxisAlignment:  MainAxisAlignment.center,
                      children: <Widget>[
                         Row(
@@ -85,13 +84,13 @@ class _TrackOrderState extends State<TrackOrder> {
                                onPressed: () {},
                                icon: const Icon(Icons.print),
                                color: Colors.green.shade500,
-                               iconSize: Style.sizeIcon,
+                               iconSize: Style.sizeIcon / 1.2,
                              ),
                               Expanded(
                                 child: Text(
                                   'Order Placed',
                                   style: TextStyle(
-                                    fontSize: Style.sizeButtonText,
+                                    fontSize: Style.sizeSubTitle,
                                     fontWeight: FontWeight.w400,
                                     color: Style.textColorLight,
                                   ),
@@ -109,7 +108,7 @@ class _TrackOrderState extends State<TrackOrder> {
                              child: Text(
                                'we have received your order',
                                style: TextStyle(
-                                 fontSize: Style.sizeButtonText,
+                                 fontSize: Style.sizeSubTitle,
                                  fontWeight: FontWeight.w300,
                                  color: Style.textColorLight,
                                ),
@@ -122,8 +121,8 @@ class _TrackOrderState extends State<TrackOrder> {
                  ),
                  indicatorStyle: IndicatorStyle(
                    color: Colors.green.shade500,
-                   height: Style.sizeButtonText,
-                   width: Style.sizeButtonText,
+                   height: Style.sizeSubTitle,
+                   width: Style.sizeSubTitle,
                  ),
                  afterLineStyle: LineStyle(
                    color: Colors.green.shade500,
@@ -147,7 +146,6 @@ class _TrackOrderState extends State<TrackOrder> {
                     minHeight: 120,
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment:  MainAxisAlignment.center,
                     children: <Widget>[
                       Row(
@@ -156,12 +154,12 @@ class _TrackOrderState extends State<TrackOrder> {
                             onPressed: () {},
                             icon: const Icon(Icons.shopping_cart),
                             color: Colors.grey,
-                            iconSize: Style.sizeIcon,
+                            iconSize: Style.sizeIcon / 1.2,
                           ),
                           Text(
                             'Picked Up',
                             style: TextStyle(
-                              fontSize: Style.sizeButtonText,
+                              fontSize: Style.sizeSubTitle,
                               fontWeight: FontWeight.w400,
                               color: Style.textColorLight,
                             ),
@@ -178,7 +176,7 @@ class _TrackOrderState extends State<TrackOrder> {
                             child: Text(
                               'your order has been picked up',
                               style: TextStyle(
-                                fontSize: Style.sizeButtonText,
+                                fontSize: Style.sizeSubTitle,
                                 fontWeight: FontWeight.w300,
                                 color: Style.textColorLight,
                               ),
@@ -190,8 +188,8 @@ class _TrackOrderState extends State<TrackOrder> {
                   ),
                 ),
                 indicatorStyle: IndicatorStyle(
-                  height: Style.sizeButtonText,
-                  width: Style.sizeButtonText,
+                  height: Style.sizeSubTitle,
+                  width: Style.sizeSubTitle,
                 ),
                 afterLineStyle: LineStyle(
 
@@ -213,7 +211,6 @@ class _TrackOrderState extends State<TrackOrder> {
                     minHeight: 120,
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment:  MainAxisAlignment.center,
                     children: <Widget>[
                       Row(
@@ -222,12 +219,12 @@ class _TrackOrderState extends State<TrackOrder> {
                             onPressed: () {},
                             icon: const Icon(Icons.local_shipping),
                             color: Colors.grey,
-                            iconSize: Style.sizeIcon,
+                            iconSize: Style.sizeIcon / 1.2,
                           ),
                           Text(
                             'Shipped',
                             style: TextStyle(
-                              fontSize: Style.sizeButtonText,
+                              fontSize: Style.sizeSubTitle,
                               fontWeight: FontWeight.w400,
                               color: Style.textColorLight,
                             ),
@@ -244,7 +241,7 @@ class _TrackOrderState extends State<TrackOrder> {
                             child: Text(
                               'your order has been shipped',
                               style: TextStyle(
-                                fontSize: Style.sizeButtonText,
+                                fontSize: Style.sizeSubTitle,
                                 fontWeight: FontWeight.w300,
                                 color: Style.textColorLight,
                               ),
@@ -256,8 +253,8 @@ class _TrackOrderState extends State<TrackOrder> {
                   ),
                 ),
                 indicatorStyle: IndicatorStyle(
-                  height: Style.sizeButtonText,
-                  width: Style.sizeButtonText,
+                  height: Style.sizeSubTitle,
+                  width: Style.sizeSubTitle,
                 ),
                 afterLineStyle: LineStyle(
                 ),
@@ -278,7 +275,6 @@ class _TrackOrderState extends State<TrackOrder> {
                     minHeight: 120,
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment:  MainAxisAlignment.center,
                     children: <Widget>[
                       Row(
@@ -287,12 +283,12 @@ class _TrackOrderState extends State<TrackOrder> {
                             onPressed: () {},
                             icon: const Icon(Icons.home),
                             color: Colors.grey,
-                            iconSize: Style.sizeIcon,
+                            iconSize: Style.sizeIcon / 1.2,
                           ),
                           Text(
                             'Delivered',
                             style: TextStyle(
-                              fontSize: Style.sizeButtonText,
+                              fontSize: Style.sizeSubTitle,
                               fontWeight: FontWeight.w400,
                               color: Style.textColorLight,
                             ),
@@ -309,7 +305,7 @@ class _TrackOrderState extends State<TrackOrder> {
                             child: Text(
                               'your order has been delivered',
                               style: TextStyle(
-                                fontSize: Style.sizeButtonText,
+                                fontSize: Style.sizeSubTitle,
                                 fontWeight: FontWeight.w300,
                                 color: Style.textColorLight,
                               ),
@@ -321,8 +317,8 @@ class _TrackOrderState extends State<TrackOrder> {
                   ),
                 ),
                 indicatorStyle: IndicatorStyle(
-                  height: Style.sizeButtonText,
-                  width: Style.sizeButtonText,
+                  height: Style.sizeSubTitle,
+                  width: Style.sizeSubTitle,
                 ),
                 afterLineStyle: LineStyle(
                 ),
