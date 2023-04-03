@@ -28,10 +28,12 @@ class GetOrderDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Style.blueAccentPageBackgroundColor,
+        toolbarHeight: 65,
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: Icon(Icons.arrow_circle_left_outlined),
-          iconSize: Style.sizeIcon / 1.3,
+          iconSize: Style.sizeIcon / 1.2,
           onPressed: () {
             Navigator.pop(context,
                 MaterialPageRoute(
@@ -43,9 +45,18 @@ class GetOrderDetails extends StatelessWidget {
         title: Text(
           'View Order Details',
           style: TextStyle(
-            fontSize: Style.sizeButtonText,
-            fontWeight: FontWeight.bold,
             color: Style.textColorDark,
+          ),
+        ),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+            gradient: LinearGradient(
+              colors: [Colors.blue, Style.blueAccentPageBackgroundColor],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+            ),
           ),
         ),
       ),
@@ -82,7 +93,7 @@ class GetOrderDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: Style.paddingHeight / 2.5,
+                height: Style.paddingHeight / 2,
               ),
               Text.rich(
                 TextSpan(
@@ -96,23 +107,32 @@ class GetOrderDetails extends StatelessWidget {
                       ),
                     ),
                     WidgetSpan(
-                      child: ReadMoreText(
-                        'Samsung AUE60 Crystal 4k UHD Smart TV. Powerful 4K upscaling ensures you get up to 4K resolution for the content you love. You will also experience more lifelike color expressions due to its sophisticated color mapping technology. ',
-                        trimLines: 2,
-                        trimMode: TrimMode.Line,
-                        trimCollapsedText: 'show more',
-                        trimExpandedText: 'show less',
-                        moreStyle: TextStyle(
-                            fontSize: Style.sizeSubTitle,
-                            fontWeight: FontWeight.w400,
-                            color: Style.textColorLight),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: Style.paddingHeight / 3.5,
+                          ),
+                          ReadMoreText(
+                            'Samsung AUE60 Crystal 4k UHD Smart TV. Powerful 4K upscaling ensures you get up to 4K resolution for the content you love. You will also experience more lifelike color expressions due to its sophisticated color mapping technology. ',
+                            trimLines: 2,
+                            colorClickableText: Style.textColorGrey,
+                            trimMode: TrimMode.Line,
+                            trimCollapsedText: ' show more',
+                            trimExpandedText: ' show less',
+                            style: TextStyle(
+                              fontSize: Style.sizeSubTitle,
+                              fontWeight: FontWeight.w400,
+                              color: Style.textColorLight,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height: Style.paddingHeight / 2.5,
+                height: Style.paddingHeight / 2,
               ),
               Row(
                 children: <Widget>[
@@ -164,7 +184,7 @@ class GetOrderDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: Style.paddingHeight / 2.5,
+                height: Style.paddingHeight / 2,
               ),
               Text.rich(
                 TextSpan(
@@ -178,16 +198,24 @@ class GetOrderDetails extends StatelessWidget {
                       ),
                     ),
                     WidgetSpan(
-                      child: ReadMoreText(
-                        'Shop no 5, kamal sagar,90 feet road, airoli, navi mumbai.',
-                        trimLines: 2,
-                        trimMode: TrimMode.Line,
-                        trimCollapsedText: 'show more',
-                        trimExpandedText: 'show less',
-                        moreStyle: TextStyle(
-                            fontSize: Style.sizeSubTitle,
-                            fontWeight: FontWeight.w400,
-                            color: Style.textColorLight),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: Style.paddingHeight / 3.5,
+                          ),
+                          ReadMoreText(
+                            'Shop no 5, kamal sagar,90 feet road, airoli, navi mumbai.',
+                            trimLines: 2,
+                            trimMode: TrimMode.Line,
+                            colorClickableText: Style.textColorGrey,
+                            trimCollapsedText: 'show more',
+                            trimExpandedText: 'show less',
+                            style: TextStyle(
+                                fontSize: Style.sizeSubTitle,
+                                fontWeight: FontWeight.w400,
+                                color: Style.textColorLight),
+                          ),
+                        ],
                       ),
                     ),
                   ],
@@ -223,7 +251,7 @@ class GetOrderDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: Style.paddingHeight / 2.5,
+                height: Style.paddingHeight / 2,
               ),
               Row(
                 children: <Widget>[
@@ -246,10 +274,7 @@ class GetOrderDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: Style.paddingHeight / 3,
-              ),
-              SizedBox(
-                height: Style.paddingHeight / 3,
+                height: Style.paddingHeight,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

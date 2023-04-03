@@ -75,108 +75,104 @@ class _MyHomePageState extends State<MyHomePage> {
           state: _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 0,
           title: const Text('New Order'),
-          content: SingleChildScrollView(
-            child: Container(
-              height: MediaQuery.of(context).size.height*0.55,
-              width:MediaQuery.of(context).size.height*0.85,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    TextFormField(
-                      controller: orderNumber,
-                      decoration: const InputDecoration(
-                        prefixIcon: const Icon(Icons.numbers_outlined),
-                        border: OutlineInputBorder(),
-                        labelText: 'Order Number',
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    TextFormField(
-                        controller: retailerName,
-                        decoration: const InputDecoration(
-                          prefixIcon: const Icon(Icons.person),
-                          border: OutlineInputBorder(),
-                          labelText: 'Order Retailer Name',
-                        ),
-                      ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                          Expanded(
-                              child: Container(
-                                height: MediaQuery.of(context).size.height*0.08,
-                                width: MediaQuery.of(context).size.width*0.4,
-                                margin: EdgeInsets.only(right: 10, bottom: 10),
-                                child: TextFormField(
-                                controller: NumOfItems,
-
-                                decoration: const InputDecoration(
-                                prefixIcon: const Icon(Icons.numbers_outlined),
-
-                                labelText: 'Number of Items',
-                                ),
-                                ),
-                              )
-                          ),
-
-                      Expanded(
-                        // height: MediaQuery.of(context).size.height*0.095,
-                        // width: MediaQuery.of(context).size.width*0.4,
-                        child: DropdownSearch<String>(
-                          popupProps: PopupProps.menu(
-                            showSelectedItems: true,
-
-                          ),
-                          items: ["Brazil", "Italia", "Tunisia", 'Canada', 'Canada', ],
-                          dropdownDecoratorProps: DropDownDecoratorProps(
-                            dropdownSearchDecoration: InputDecoration(
-
-                            ),
-                          ),
-                          onChanged: print,
-                          selectedItem: "Choose a Product",
-
-                        ),
-                      ),
-                    ],
-                    ),
-
-                    const SizedBox(
-                      height: 8,
-                    ),
-                      TextFormField(
-                        controller: billingAddress,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                          prefixIcon: const Icon(Icons.home),
-                          border: OutlineInputBorder(),
-                          labelText: 'Billing Address',
-                        ),
-                      ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    TextFormField(
-                      controller: shippingAddress,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        prefixIcon: const Icon(Icons.home),
-                        border: OutlineInputBorder(),
-                        labelText: 'Shipping Address',
-                      ),
-                    ),
-                  ],
+          content: Container(
+            height: MediaQuery.of(context).size.height*0.55,
+            width:MediaQuery.of(context).size.height*0.85,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 8,
                 ),
-              ),
+                TextFormField(
+                  controller: orderNumber,
+                  decoration: const InputDecoration(
+                    prefixIcon: const Icon(Icons.numbers_outlined),
+                    border: OutlineInputBorder(),
+                    labelText: 'Order Number',
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextFormField(
+                    controller: retailerName,
+                    decoration: const InputDecoration(
+                      prefixIcon: const Icon(Icons.person),
+                      border: OutlineInputBorder(),
+                      labelText: 'Order Retailer Name',
+                    ),
+                  ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                      Expanded(
+                          child: Container(
+                            height: MediaQuery.of(context).size.height*0.08,
+                            width: MediaQuery.of(context).size.width*0.4,
+                            margin: EdgeInsets.only(right: 10, bottom: 10),
+                            child: TextFormField(
+                            controller: NumOfItems,
+
+                            decoration: const InputDecoration(
+                            prefixIcon: const Icon(Icons.numbers_outlined),
+
+                            labelText: 'Number of Items',
+                            ),
+                            ),
+                          )
+                      ),
+
+                  Expanded(
+                    // height: MediaQuery.of(context).size.height*0.095,
+                    // width: MediaQuery.of(context).size.width*0.4,
+                    child: DropdownSearch<String>(
+                      popupProps: PopupProps.menu(
+                        showSelectedItems: true,
+
+                      ),
+                      items: ["Brazil", "Italia", "Tunisia", 'Canada', 'Canada', ],
+                      dropdownDecoratorProps: DropDownDecoratorProps(
+                        dropdownSearchDecoration: InputDecoration(
+
+                        ),
+                      ),
+                      onChanged: print,
+                      selectedItem: "Choose a Product",
+
+                    ),
+                  ),
+                ],
+                ),
+
+                const SizedBox(
+                  height: 8,
+                ),
+                  TextFormField(
+                    controller: billingAddress,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                      prefixIcon: const Icon(Icons.home),
+                      border: OutlineInputBorder(),
+                      labelText: 'Billing Address',
+                    ),
+                  ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextFormField(
+                  controller: shippingAddress,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    prefixIcon: const Icon(Icons.home),
+                    border: OutlineInputBorder(),
+                    labelText: 'Shipping Address',
+                  ),
+                ),
+              ],
             ),
           ),
         ),

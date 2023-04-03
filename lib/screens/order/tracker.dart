@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import '../../constants/styles.dart';
+import '../list_by_category.dart';
 
 class TrackOrder extends StatefulWidget {
   const TrackOrder({Key? key}) : super(key: key);
@@ -14,24 +15,39 @@ class _TrackOrderState extends State<TrackOrder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Style.blueAccentPageBackgroundColor,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_circle_left_outlined),
-          iconSize: Style.sizeIcon / 1.2,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text(
-          'Track order',
-          style: TextStyle(
-            fontSize: Style.sizeButtonText * 1.1,
-            fontWeight: FontWeight.bold,
-            color: Style.textColorDark,
+        appBar: AppBar(
+          toolbarHeight: 65,
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_circle_left_outlined),
+            iconSize: Style.sizeIcon / 1.2,
+            onPressed: () {
+              Navigator.pop(context,
+                MaterialPageRoute(
+                  builder: (context) => ListByCategory(),
+                ),
+              );
+            },
+          ),
+          title: Text(
+            'Track Order',
+            style: TextStyle(
+              color: Style.textColorDark,
+            ),
+          ),
+          centerTitle: true,
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+              gradient: LinearGradient(
+                colors: [Colors.blue, Style.blueAccentPageBackgroundColor],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
+            ),
           ),
         ),
-      ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Container(
