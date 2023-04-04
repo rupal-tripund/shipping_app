@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../constants/styles.dart';
-import 'package:shipping_app/screens/list_by_category.dart';
+import '../screens/order/order_history.dart';
 
 class CategoriesWidget extends StatefulWidget {
   CategoriesWidget({Key? key}) : super(key: key);

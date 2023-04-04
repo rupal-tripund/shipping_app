@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shipping_app/constants/styles.dart';
 import 'package:shipping_app/screens/order/cancel_order.dart';
-import 'package:shipping_app/screens/welcome_screen.dart';
+import 'package:shipping_app/screens/order/tracker.dart';
+import 'package:shipping_app/screens/order/view_order_detail.dart';
 import 'package:shipping_app/shared/bottom_navigation.dart';
 import 'package:shipping_app/shared/side_menu.dart';
 import 'package:shipping_app/shared/top_navigation.dart';
@@ -16,21 +17,17 @@ class ListByCategory extends StatefulWidget {
 }
 
 class _ListByCategoryState extends State<ListByCategory> {
-  List items = [{'id':1,'image':'assets/images/1.jpg','name':'Mobile','description':'Latest android smart phone', 'status':'Pending'},
-    {'id':1,'image':'assets/images/1.jpg','name':'TV','description':'Latest android smart phone', 'status':'Active'},
-    {'id':2,'image':'assets/images/1.jpg','name':'Tab','description':'Latest android smart phone', 'status':'Active'},
-    {'id':3,'image':'assets/images/1.jpg','name':'Laptop','description':'Latest android smart phone', 'status':'Active'},
-    {'id':4,'image':'assets/images/1.jpg','name':'Earphones','description':'Latest android smart phone', 'status':'Pending'},
-    {'id':5,'image':'assets/images/1.jpg','name':'Monitor','description':'Latest android smart phone', 'status':'Active'}
+  List items = [
+    {'id':1,'image':'assets/images/01.jpg','name':'Mobile','description':'Latest android smart phone', 'status':'Pending'},
+    {'id':1,'image':'assets/images/01.jpg','name':'TV','description':'Latest android smart phone', 'status':'Active'},
+    {'id':2,'image':'assets/images/01.jpg','name':'Tab','description':'Latest android smart phone', 'status':'Active'},
+    {'id':3,'image':'assets/images/01.jpg','name':'Laptop','description':'Latest android smart phone', 'status':'Active'},
+    {'id':4,'image':'assets/images/01.jpg','name':'Earphones','description':'Latest android smart phone', 'status':'Pending'},
+    {'id':5,'image':'assets/images/01.jpg','name':'Monitor','description':'Latest android smart phone', 'status':'Active'}
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar:AppBar(
-      //
-      //   title: Text(title),
-      //   backgroundColor: Style.blueAccentPageBackgroundColor,
-      // ),
       backgroundColor:Style.blueAccentPageBackgroundColor,
       drawer: SideMenu(),
       appBar: const TopNavBar(),
@@ -51,7 +48,6 @@ class _ListByCategoryState extends State<ListByCategory> {
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
-
                   ],
                 ),
               ),
@@ -82,7 +78,7 @@ class _ListByCategoryState extends State<ListByCategory> {
                   ],
                 ),
               ),
-// Categories Widgets
+
               Container(
                 padding: EdgeInsets.only(top: 20),
                 decoration: BoxDecoration(
@@ -117,8 +113,7 @@ class _ListByCategoryState extends State<ListByCategory> {
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
-                                                  builder: (context) => WelcomeScreen(),
-
+                                                  builder: (context) => const GetOrderDetails(),
                                                 ));
                                           },
                                           child: Column(
@@ -159,8 +154,6 @@ class _ListByCategoryState extends State<ListByCategory> {
                                                           color:Style.blueAccentPageBackgroundColor,
                                                         ),
                                                       ),
-
-
                                                     ],
                                                   ),
                                                 ),
@@ -182,11 +175,9 @@ class _ListByCategoryState extends State<ListByCategory> {
                                                   ),
                                                 ),
                                                 SizedBox(height:24),
-
                                               ]
                                           )
                                       )
-
                                       ],
                                     ),
                                     SizedBox(height: 10.0,),
@@ -203,8 +194,7 @@ class _ListByCategoryState extends State<ListByCategory> {
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                        builder: (context) => CancelOrder(),
-
+                                                        builder: (context) => const TrackOrder(),
                                                       ));
                                                 },
                                                 child: Container(
@@ -232,8 +222,7 @@ class _ListByCategoryState extends State<ListByCategory> {
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
-                                                        builder: (context) => CancelOrder(),
-
+                                                        builder: (context) => const CancelOrder(),
                                                       ));
                                                 },
                                                 child: Container(
@@ -252,7 +241,6 @@ class _ListByCategoryState extends State<ListByCategory> {
                                               ),
                                             ):null,
                                           ),
-
                                         ]
                                     )
                                     ]
