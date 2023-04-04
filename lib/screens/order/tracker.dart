@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import '../../constants/styles.dart';
-import 'order_history.dart';
+import 'history.dart';
 
 class TrackOrder extends StatefulWidget {
   const TrackOrder({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _TrackOrderState extends State<TrackOrder> {
             onPressed: () {
               Navigator.pop(context,
                 MaterialPageRoute(
-                  builder: (context) => ListByCategory(),
+                  builder: (context) => GetHistory(),
                 ),
               );
             },

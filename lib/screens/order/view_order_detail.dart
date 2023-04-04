@@ -3,7 +3,7 @@ import '../../constants/styles.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'download_Invoice.dart';
 import 'package:readmore/readmore.dart';
-import 'order_history.dart';
+import 'history.dart';
 
 class GetOrderDetails extends StatelessWidget {
   const GetOrderDetails({Key? key}) : super(key: key);
@@ -36,7 +36,7 @@ class GetOrderDetails extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context,
                 MaterialPageRoute(
-                  builder: (context) => ListByCategory(),
+                  builder: (context) => GetHistory(),
                 ),
             );
           },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../constants/styles.dart';
-import '../screens/order/order_history.dart';
+import '../screens/order/history.dart';
 
 class CategoriesWidget extends StatefulWidget {
   CategoriesWidget({Key? key}) : super(key: key);
@@ -67,7 +67,7 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ListByCategory(),
+                                    builder: (context) => GetHistory(),
                                   ));
                             },
                             child: Row(
@@ -131,7 +131,7 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ListByCategory(),
+                                    builder: (context) => GetHistory(),
                                   ));
                             },
                             child: Row(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shipping_app/constants/styles.dart';
+import '../screens/order/history.dart';
 import '../screens/order/new_order_screens/new_order_screen.dart';
-import '../screens/order/order_history.dart';
 import '../widgets/profile_settings.dart';
 
 class SideMenu extends StatelessWidget {
@@ -114,7 +114,7 @@ class SideMenu extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ListByCategory(),
+                  builder: (context) => GetHistory(),
 
                 ));
           },
