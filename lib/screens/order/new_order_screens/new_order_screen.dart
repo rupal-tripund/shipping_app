@@ -1,169 +1,163 @@
 import 'package:flutter/material.dart';
-import 'package:shipping_app/constants/styles.dart';
-import 'package:shipping_app/screens/order/new_order_screens/step1.dart';
-import 'package:shipping_app/screens/order/new_order_screens/step2.dart';
-import 'package:shipping_app/screens/order/new_order_screens/step3.dart';
-import 'package:shipping_app/shared/side_menu.dart';
-import 'package:shipping_app/shared/top_navigation.dart';
-import 'package:shipping_app/shared/bottom_navigation.dart';
+import 'package:shipping_app/screens/order/new_order_screens/add_order_details.dart';
+import 'package:shipping_app/screens/order/new_order_screens/add_order_dimension.dart';
+import 'package:shipping_app/screens/order/new_order_screens/order_confirmation.dart';
+import '../../../constants/styles.dart';
+import '../../../shared/bottom_navigation.dart';
+import '../../../shared/side_menu.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+
+class newOrderMultipleForm extends StatefulWidget {
+  const newOrderMultipleForm({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<newOrderMultipleForm> createState() => _newOrderMultipleFormState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _activeStepIndex = 0;
-
-  List<Step> stepList() => [
-        Step(
-          state: _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
-          isActive: _activeStepIndex >= 0,
-          title: const Text('New Order'),
-          content: const newOrderForm(),
-        ),
-        Step(
-            state:
-                _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
-            isActive: _activeStepIndex >= 1,
-            title: const Text('Address'),
-            content: Container(
-              height: MediaQuery.of(context).size.height*0.6,
-              child:AddOrderDetails()
-            )
-        ),
-        Step(
-            state: StepState.complete,
-            isActive: _activeStepIndex >= 2,
-            title: const Text('Confirm'),
-            content: const viewOrderList(),
-        ),
-      ];
-
+class _newOrderMultipleFormState extends State<newOrderMultipleForm> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:Style.blueAccentPageBackgroundColor,
+      key: _scaffoldKey,
       drawer: SideMenu(),
-      appBar: const TopNavBar(),
-      body: SafeArea(
-    child: SingleChildScrollView(
-    child: Column(
-      children: [
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            children: [
-              Text(
-                " New Order",
-                style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-
-            ],
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+        toolbarHeight: 60,
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer();
+          },
+        ),
+        centerTitle: true,
+        title: Text(
+          'New Order',
+          style: TextStyle(
+            color: Style.textColorDark,
           ),
         ),
-
-        Container(
-          padding: EdgeInsets.only(top: 30),
+        flexibleSpace: Container(
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
-              )),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 1.0,right: 1.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height*0.8,
-                  child: Stepper(
-                    type: StepperType.horizontal,
-                    currentStep: _activeStepIndex,
-                    controlsBuilder: (BuildContext context, ControlsDetails controls) {
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          SizedBox(
-                            width: 160,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: controls.onStepContinue,
-                              child: _activeStepIndex != 2
-                                  ? const Text("Next")
-                                  : const Text("Make Payment"),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Style.blueAccentPageBackgroundColor,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 160,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: controls.onStepCancel,
-                              child: const Text('Cancel'),
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Style.blueAccentPageBackgroundColor,
-                                  side: const BorderSide(
-                                    width: 1.0,
-                                    color: Colors.lightBlueAccent,
-                                  )),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                    steps: stepList(),
-                    onStepContinue: () {
-                      if (_activeStepIndex < (stepList().length - 1)) {
-                        setState(() {
-                          _activeStepIndex += 1;
-                        });
-                      } else {
-                        print('Submited');
-                      }
-                    },
-                    onStepCancel: () {
-                      if (_activeStepIndex == 0) {
-                        return;
-                      }
-
-                      setState(() {
-                        _activeStepIndex -= 1;
-                      });
-                    },
-                    onStepTapped: (int index) {
-                      setState(() {
-                        _activeStepIndex = index;
-                      });
-                    },
-                  ),
-                ),
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20), bottomRight: Radius.circular(20)),
+            gradient: LinearGradient(
+              colors: [Style.blueAccentPageBackgroundColor, Style.blueAccentPageBackgroundColor],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+            ),
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () {
+            },
+          ),
+        ],
+      ),
+      body:SafeArea(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: Style.paddingHeight / 5),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: _getStepper()
               ),
-
-              SizedBox(height: 5,),
             ],
           ),
         ),
-      ],
-    ),
-    ),
-    ),
+      ),
       bottomNavigationBar: BottomNavigation(),
-
-
     );
   }
 }
+
+class _getStepper extends StatefulWidget {
+  const _getStepper({Key? key}) : super(key: key);
+
+  @override
+  State<_getStepper> createState() => _getStepperState();
+}
+
+class _getStepperState extends State<_getStepper> {
+  int currentStep = 0;
+  List<Step> getSteps() => [
+    Step(
+      title: Text(''),
+      content: addOrderDetails(),
+      isActive: currentStep >= 0,
+      state: currentStep > 0 ? StepState.complete : StepState.indexed,
+    ),
+    Step(
+      title: Text(''),
+      content: AddOrderDimension(),
+      isActive: currentStep >= 1,
+      state: currentStep > 1 ? StepState.complete : StepState.indexed,
+    ),
+    Step(
+      title: Text(''),
+      content: viewOrderList(),
+      isActive: currentStep >= 2,
+      state: currentStep > 2 ? StepState.complete : StepState.indexed,
+    ),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Stepper(
+      elevation: 0.0,
+      physics: const BouncingScrollPhysics(),
+      type: StepperType.horizontal,
+      steps: getSteps(),
+      currentStep: currentStep,
+      onStepContinue: () {
+        final isLastStep = currentStep == getSteps().length -1;
+        setState(() {
+          if(!isLastStep){
+            currentStep += 1;
+          }
+        });
+      },
+      onStepCancel: () {
+        setState(() {
+          if(currentStep > 0){
+            currentStep -= 1;
+          }
+        });
+      },
+      onStepTapped: (int index) {
+        setState(() {
+          currentStep = index;
+        });
+      },
+      controlsBuilder: (BuildContext context, ControlsDetails details) {
+        final isLastStep = currentStep == getSteps().length -1;
+        return Container(
+          margin: EdgeInsets.only(top: Style.paddingHeight),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: ElevatedButton(
+                  child: Text('BACK'),
+                  onPressed: details.onStepCancel,
+                ),
+              ),
+              SizedBox(
+                width: Style.paddingHeight / 3,
+              ),
+              Expanded(
+                child: ElevatedButton(
+                  child: Text(isLastStep ? 'CONFIRM' : 'NEXT'),
+                  onPressed: details.onStepContinue,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
 

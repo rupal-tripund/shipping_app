@@ -42,7 +42,6 @@ dependencies:
   get: ^4.6.5
   image_picker: ^0.8.7
   carousel_pro_nullsafety: ^2.0.0
-  dropdown_search: ^5.0.6
   step_tracker: ^0.0.5
   file_picker: ^5.2.6
   input_quantity: ^1.1.5
@@ -50,6 +49,7 @@ dependencies:
   path_provider: ^2.0.14
   open_file: ^3.2.1
   timeline_tile: ^2.0.0
+  readmore: ^2.2.0
 
 dependency_overrides:
   ffi: ^2.0.1

@@ -4,7 +4,7 @@ import 'package:input_quantity/input_quantity.dart';
 import '../../../constants/styles.dart';
 
 int _nItem = 0;
-final _formKey = GlobalKey<FormState>();
+final _dimensionFormKey = GlobalKey<FormState>();
 class Item{
   String header;
   Widget body;
@@ -12,46 +12,49 @@ class Item{
   Item(this.header, this.body, this.isExpanded);
 }
 
-class AddOrderDetails extends StatelessWidget {
-  const AddOrderDetails({Key? key}) : super(key: key);
+class AddOrderDimension extends StatelessWidget {
+  const AddOrderDimension({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     _nItem = 5;
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Container(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: PanelWidget(),
-                  ),
-
-                  SizedBox(
-                    height: Style.paddingHeight,
-                  ),
-
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: MediaQuery.of(context).size.width < 450
-                            ? Style.paddingHeight : Style.paddingHeight * 3,
-                        vertical: MediaQuery.of(context).size.width < 450
-                            ? Style.paddingHeight : Style.paddingHeight * 3,
-                      ),
-                      child: ButtonWidget(),
-                    ),
-                  ),
-                ],
+    return Container(
+      child: Form(
+        key: _dimensionFormKey,
+        child: Column(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Order Dimension',
+                style: TextStyle(
+                  fontSize: Style.sizeSubTitle * 1.3,
+                  fontWeight: FontWeight.w400,
+                  color: Style.textColorLight,
+                ),
               ),
             ),
-          ),
+            SizedBox(
+              height: Style.paddingHeight,
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: PanelWidget(),
+            ),
+
+            // Align(
+            //   alignment: Alignment.bottomCenter,
+            //   child: Container(
+            //     padding: EdgeInsets.symmetric(
+            //       horizontal: MediaQuery.of(context).size.width < 450
+            //           ? Style.paddingHeight : Style.paddingHeight * 3,
+            //       vertical: MediaQuery.of(context).size.width < 450
+            //           ? Style.paddingHeight : Style.paddingHeight * 3,
+            //     ),
+            //     child: ButtonWidget(),
+            //   ),
+            // ),
+          ],
         ),
       ),
     );
@@ -123,7 +126,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
     return InkWell(
       onTap: () {
         setState(() {
-          if(_formKey.currentState!.validate()){
+          if(_dimensionFormKey.currentState!.validate()){
 
           }
         });
@@ -193,13 +196,12 @@ class _getOrderDescriptionTextFieldsState extends State<getOrderDescriptionTextF
              decoration: InputDecoration(
              prefixIcon: const Icon(Icons.description),
              border: OutlineInputBorder(
-               borderRadius: BorderRadius.circular(13.0),
+               borderSide: const BorderSide(color: Colors.grey, width: 1),
              ),
              enabledBorder: OutlineInputBorder(
-               borderRadius: BorderRadius.circular(13.0),
-               borderSide: const BorderSide(color: Colors.black54, width: 2.0),
+               borderSide: const BorderSide(color: Colors.grey, width: 1),
              ),
-             hintText: 'Enter order description for item '+(i+1).toString(),
+             hintText: 'Enter item '+(i+1).toString()+ ' description',
              ),
              validator: (value){
                if(value!.isEmpty) {
@@ -257,7 +259,7 @@ class _getOrderDimensionState extends State<getOrderDimension> {
     "Honor play",
     "Mango box",
   ];
-  final List<double> _productQuantity = <double>[0,0,0,0];
+  final List<int> _productQuantity = <int>[0,0,0,0];
   List<TextEditingController> dimensionLengthControllers = [];
   List<TextEditingController> dimensionWidthControllers = [];
   List<TextEditingController> dimensionHeightControllers = [];
@@ -272,7 +274,7 @@ class _getOrderDimensionState extends State<getOrderDimension> {
     createFields();
   }
 
-  void setQuantity(double value, int index){
+  void setQuantity(int value, int index){
     _productQuantity[index] = value;
   }
 
@@ -315,9 +317,9 @@ class _getOrderDimensionState extends State<getOrderDimension> {
                   ),
 
                   InputQty(
-                    maxVal: 100.0,
+                    maxVal: 100,
                     initVal: _productQuantity[i],
-                    minVal: 0.0,
+                    minVal: 0,
                     borderShape: BorderShapeBtn.square,
                     boxDecoration: BoxDecoration(),
                     minusBtn: Icon(
@@ -331,7 +333,7 @@ class _getOrderDimensionState extends State<getOrderDimension> {
                     btnColor1: Colors.blueAccent,
                     btnColor2: Colors.blueAccent,
                     onQtyChanged: (val) {
-                      double value = val as double;
+                      int value = val as int;
                       setQuantity(value , i);
                     },
                   ),
@@ -346,11 +348,10 @@ class _getOrderDimensionState extends State<getOrderDimension> {
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.description),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(13.0),
+                    borderSide: const BorderSide(color: Colors.grey, width: 1),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(13.0),
-                    borderSide: const BorderSide(color: Colors.black54, width: 2.0),
+                    borderSide: const BorderSide(color: Colors.grey, width: 1),
                   ),
                   hintText: 'Enter order length',
                 ),
@@ -370,11 +371,10 @@ class _getOrderDimensionState extends State<getOrderDimension> {
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.description),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(13.0),
+                    borderSide: const BorderSide(color: Colors.grey, width: 1),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(13.0),
-                    borderSide: const BorderSide(color: Colors.black54, width: 2.0),
+                    borderSide: const BorderSide(color: Colors.grey, width: 1),
                   ),
                   hintText: 'Enter order width',
                 ),
@@ -394,11 +394,10 @@ class _getOrderDimensionState extends State<getOrderDimension> {
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.description),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(13.0),
+                    borderSide: const BorderSide(color: Colors.grey, width: 1),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(13.0),
-                    borderSide: const BorderSide(color: Colors.black54, width: 2.0),
+                    borderSide: const BorderSide(color: Colors.grey, width: 1),
                   ),
                   hintText: 'Enter order height',
                 ),
@@ -720,7 +719,6 @@ class _getPhotographOrderDocumentState extends State<getPhotographOrderDocument>
           ),
 
           for (var name in _fileNames) name,
-
         ],
       ),
     );

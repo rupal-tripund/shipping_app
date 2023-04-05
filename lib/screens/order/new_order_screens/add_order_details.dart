@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:dropdown_search/dropdown_search.dart';
+import '../../../constants/styles.dart';
 
-class newOrderForm extends StatefulWidget {
-  const newOrderForm({Key? key}) : super(key: key);
+class addOrderDetails extends StatefulWidget {
+  const addOrderDetails({Key? key}) : super(key: key);
 
   @override
-  State<newOrderForm> createState() => _newOrderFormState();
+  State<addOrderDetails> createState() => _addOrderDetailsState();
 }
 
-class _newOrderFormState extends State<newOrderForm> {
+class _addOrderDetailsState extends State<addOrderDetails> {
   TextEditingController orderNumber = TextEditingController();
   TextEditingController retailerName = TextEditingController();
   TextEditingController NumOfItems = TextEditingController();
@@ -18,23 +18,38 @@ class _newOrderFormState extends State<newOrderForm> {
   TextEditingController shippingAddress  = TextEditingController();
   TextEditingController address = TextEditingController();
   TextEditingController pinCode = TextEditingController();
+  String _items = "";
+  List<String> _itemList = [
+    "Mobile",
+    "TV",
+    "AC",
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height*0.55,
-      width:MediaQuery.of(context).size.height*0.85,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          const SizedBox(
-            height: 8,
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              'Order Detail',
+              style: TextStyle(
+                fontSize: Style.sizeSubTitle * 1.3,
+                fontWeight: FontWeight.w400,
+                color: Style.textColorLight,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: Style.paddingHeight,
           ),
           TextFormField(
             controller: orderNumber,
             decoration: const InputDecoration(
               prefixIcon: const Icon(Icons.numbers_outlined),
               border: OutlineInputBorder(),
-              labelText: 'Order Number',
+              hintText: 'Order Number',
             ),
           ),
           const SizedBox(
@@ -45,52 +60,63 @@ class _newOrderFormState extends State<newOrderForm> {
             decoration: const InputDecoration(
               prefixIcon: const Icon(Icons.person),
               border: OutlineInputBorder(),
-              labelText: 'Order Retailer Name',
+              hintText: 'Order Retailer Name',
             ),
           ),
           const SizedBox(
             height: 8,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
               Expanded(
                   child: Container(
                     height: 55,
-                    // width: MediaQuery.of(context).size.width*0.4,
-                    margin: EdgeInsets.only(right: 10, bottom: 10),
                     child: TextFormField(
                       controller: NumOfItems,
-
                       decoration: const InputDecoration(
                         prefixIcon: const Icon(Icons.numbers_outlined),
                         border: OutlineInputBorder(),
-                        labelText: 'Number of Items',
+                        hintText: 'Number of Items',
                       ),
                     ),
                   )
               ),
-
+              SizedBox(
+                width: Style.paddingWidth,
+              ),
               Expanded(
-                // height: MediaQuery.of(context).size.height*0.095,
-                // width: MediaQuery.of(context).size.width*0.4,
                 child: Container(
-                  margin: EdgeInsets.only(right: 10, bottom: 10),
-                  child: DropdownSearch<String>(
-                    popupProps: PopupProps.menu(
-                      showSelectedItems: true,
-
-                    ),
-                    items: ["Brazil", "Italia", "Tunisia", 'Canada', 'Canada', ],
-                    dropdownDecoratorProps: DropDownDecoratorProps(
-                      dropdownSearchDecoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(top: 20.0,bottom:20, left:10),
-                        border: OutlineInputBorder(),
+                  height: 55,
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButtonFormField(
+                      decoration: InputDecoration(
+                        hintText: 'Choose a Product',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.grey, width: 1),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.grey, width: 1),
+                        ),
                       ),
+                      value: _items.isEmpty ? null : _items,
+                      isDense: true,
+                      isExpanded: true,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _items = newValue!;
+                        });
+                      },
+                      items: _itemList.map(
+                              (item) {
+                            return DropdownMenuItem(
+                              value: item,
+                              child: Text(item),
+                            );
+                          }
+                      ).toList(),
                     ),
-                    onChanged: print,
-                    selectedItem: "Choose a Product",
-
                   ),
                 ),
               ),
@@ -106,7 +132,7 @@ class _newOrderFormState extends State<newOrderForm> {
             decoration: const InputDecoration(
               prefixIcon: const Icon(Icons.home),
               border: OutlineInputBorder(),
-              labelText: 'Billing Address',
+              hintText: 'Billing Address',
             ),
           ),
           const SizedBox(
@@ -118,7 +144,7 @@ class _newOrderFormState extends State<newOrderForm> {
             decoration: const InputDecoration(
               prefixIcon: const Icon(Icons.home),
               border: OutlineInputBorder(),
-              labelText: 'Shipping Address',
+              hintText: 'Shipping Address',
             ),
           ),
         ],
