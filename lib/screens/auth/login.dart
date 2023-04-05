@@ -17,7 +17,7 @@ class _LoginState extends State<Login> {
 
   bool _obscureText =  true;
 
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formLoginKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   Color _emailColor = Style.defaultTextFieldIconColor;
@@ -25,7 +25,7 @@ class _LoginState extends State<Login> {
   final _emailFocus = FocusNode();
   final _passwordFocus = FocusNode();
   int validate(){
-    if(formKey.currentState!.validate()){
+    if(_formLoginKey.currentState!.validate()){
       return 1;
     }
     else{
@@ -144,7 +144,7 @@ class _LoginState extends State<Login> {
                           ? Style.paddingHeight * 1.5 : Style.paddingHeight * 2,
                     ),
                     child: Form (
-                      key: formKey,
+                      key: _formLoginKey,
                     child: Column(
                       children: <Widget>[
                         TextFormField(

@@ -102,9 +102,9 @@ class _getOrderHistory extends StatefulWidget {
 }
 
 class _getOrderHistoryState extends State<_getOrderHistory> {
-  List items = [];
+  List _items = [];
   void _getItems(){
-    items = [
+    _items = [
       {'id':1,'order_no':'1233','name':'Mobile','description':'Latest android smart phone', 'status':'Pending'},
       {'id':1,'order_no':'2323','name':'TV','description':'Latest android smart phone', 'status':'Active'},
       {'id':2,'order_no':'3423','name':'Tab','description':'Latest android smart phone', 'status':'Active'},
@@ -121,14 +121,14 @@ class _getOrderHistoryState extends State<_getOrderHistory> {
   @override
   void dispose() {
     super.dispose();
-    items = [];
+    _items = [];
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.all(8),
-      itemCount: items.length,
+      itemCount: _items.length,
       itemBuilder: (BuildContext context, int index) {
         return Card(
           child: ListTile(
@@ -141,16 +141,16 @@ class _getOrderHistoryState extends State<_getOrderHistory> {
               );
             },
             title: Text(
-              items[index]['name'],
+              _items[index]['name'],
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
             subtitle: Text(
-              items[index]['description'],
+              _items[index]['description'],
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            trailing: items[index]['status'] != "Active" ?
+            trailing: _items[index]['status'] != "Active" ?
             PopupMenuButton<_menuItems>(
               padding: EdgeInsets.all(0.0),
               itemBuilder: (context) => [

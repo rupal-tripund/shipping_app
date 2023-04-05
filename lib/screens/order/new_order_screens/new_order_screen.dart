@@ -15,11 +15,11 @@ class newOrderMultipleForm extends StatefulWidget {
 }
 
 class _newOrderMultipleFormState extends State<newOrderMultipleForm> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldNewOrderKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
+      key: _scaffoldNewOrderKey,
       drawer: SideMenu(),
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -29,7 +29,7 @@ class _newOrderMultipleFormState extends State<newOrderMultipleForm> {
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
-            _scaffoldKey.currentState?.openDrawer();
+            _scaffoldNewOrderKey.currentState?.openDrawer();
           },
         ),
         centerTitle: true,

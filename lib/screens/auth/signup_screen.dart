@@ -133,7 +133,7 @@ class FormWidget extends StatefulWidget {
 
 class _FormWidgetState extends State<FormWidget> {
   bool? _check = false;
-  final _formKey = GlobalKey<FormState>();
+  final _formSignUpKey = GlobalKey<FormState>();
   List<FocusNode> _nodes = [];
   List<Color> _colors = [];
 
@@ -202,7 +202,7 @@ class _FormWidgetState extends State<FormWidget> {
                   ? Style.paddingHeight : Style.paddingHeight * 3,
             ),
             child: Form(
-              key: _formKey,
+              key: _formSignUpKey,
               child: Column(
                 children: <Widget>[
                   TextFormField(
@@ -442,7 +442,7 @@ class _FormWidgetState extends State<FormWidget> {
 
                   InkWell(
                     onTap: () {
-                      if(_formKey.currentState!.validate()){
+                      if(_formSignUpKey.currentState!.validate()){
                       }
                     },
                     child: Container(

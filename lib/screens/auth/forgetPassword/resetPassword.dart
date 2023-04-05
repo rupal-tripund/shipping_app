@@ -131,7 +131,7 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  final _formKey = GlobalKey<FormState>();
+  final _formResetKey = GlobalKey<FormState>();
   bool _obscureText = true;
   bool _obscureText2 = true;
   List<FocusNode> _nodes = [];
@@ -206,7 +206,7 @@ class _FormWidgetState extends State<FormWidget> {
                   ? Style.paddingHeight : Style.paddingHeight * 3,
             ),
             child: Form(
-              key: _formKey,
+              key: _formResetKey,
               child: Column(
                 children: <Widget>[
                   TextFormField(
@@ -329,7 +329,7 @@ class _FormWidgetState extends State<FormWidget> {
 
                   InkWell(
                     onTap: () {
-                      if(_formKey.currentState!.validate()){
+                      if(_formResetKey.currentState!.validate()){
                         Navigator.pop(context, '/forgetPassword/reset-password');
                       }
                     },

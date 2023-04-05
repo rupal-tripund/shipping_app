@@ -145,7 +145,7 @@ class FormWidget extends StatefulWidget {
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  final _formKey = GlobalKey<FormState>();
+  final _formOTPKey = GlobalKey<FormState>();
   List<FocusNode> _nodes = [];
   List<Color> _colors = [];
 
@@ -213,7 +213,7 @@ class _FormWidgetState extends State<FormWidget> {
                   ? Style.paddingHeight : Style.paddingHeight * 3,
             ),
             child: Form(
-              key: _formKey,
+              key: _formOTPKey,
               child: Column(
                 children: <Widget>[
                   TextFormField(
@@ -307,7 +307,7 @@ class _FormWidgetState extends State<FormWidget> {
 
                   InkWell(
                     onTap: () {
-                      if(_formKey.currentState!.validate()){
+                      if(_formOTPKey.currentState!.validate()){
                         Navigator.pushReplacementNamed(context, '/forgetPassword/reset-password');
                         _emailController..text = "";
                         _OTPController..text = "";
