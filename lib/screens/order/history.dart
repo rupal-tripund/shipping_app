@@ -150,7 +150,8 @@ class _getOrderHistoryState extends State<_getOrderHistory> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            trailing: PopupMenuButton<_menuItems>(
+            trailing: items[index]['status'] != "Active" ?
+            PopupMenuButton<_menuItems>(
               padding: EdgeInsets.all(0.0),
               itemBuilder: (context) => [
                 PopupMenuItem<_menuItems>(
@@ -200,6 +201,47 @@ class _getOrderHistoryState extends State<_getOrderHistory> {
                         builder: (context) => const CancelOrder(),
                       ),
                     );
+                    break;
+                }
+              },
+            ) :
+            PopupMenuButton<_menuItems>(
+              padding: EdgeInsets.all(0.0),
+              itemBuilder: (context) => [
+                PopupMenuItem<_menuItems>(
+                  child: ListTile(
+                    title: Text("Order Details"),
+                    leading: Icon(Icons.file_present),
+                  ),
+                  value: _menuItems.orderDetail,
+                ),
+                PopupMenuItem<_menuItems>(
+                  child: ListTile(
+                    title: Text("Track Order"),
+                    leading: Icon(Icons.location_on),
+                  ),
+                  value: _menuItems.orderTrack,
+                ),
+              ],
+              onSelected: (value) {
+                switch (value){
+                  case _menuItems.orderDetail:
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const GetOrderDetails(),
+                      ),
+                    );
+                    break;
+                  case _menuItems.orderTrack:
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TrackOrder(),
+                      ),
+                    );
+                    break;
+                  case _menuItems.orderCancel:
                     break;
                 }
               },
