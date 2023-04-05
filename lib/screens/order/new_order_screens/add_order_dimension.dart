@@ -557,28 +557,45 @@ class _getUploadDocumentsState extends State<getUploadDocuments> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          ElevatedButton(
-            onPressed: () async{
-              final result = await FilePicker.platform.pickFiles(
-                allowMultiple: true,
-                type: FileType.custom,
-                allowedExtensions: ['pdf', 'doc'],
-              );
-              if(result == null) return;
-              _files = [];
-              _files = result.files;
-              setState(() {
-                displayFiles(_files);
-              });
-            },
-            child: Text(
-              "Upload File",
-              style: TextStyle(
-                fontSize: Style.sizeButtonText,
-                fontWeight: FontWeight.bold,
-                color: Style.textColorDark,
+          Row(
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () async{
+                  final result = await FilePicker.platform.pickFiles(
+                    allowMultiple: true,
+                    type: FileType.custom,
+                    allowedExtensions: ['pdf', 'doc'],
+                  );
+                  if(result == null) return;
+                  _files = [];
+                  _files = result.files;
+                  setState(() {
+                    displayFiles(_files);
+                  });
+                },
+                child: Text(
+                  "Upload File",
+                  style: TextStyle(
+                    fontSize: Style.sizeButtonText,
+                    fontWeight: FontWeight.bold,
+                    color: Style.textColorDark,
+                  ),
+                ),
               ),
-            ),
+              SizedBox(
+                width: Style.paddingWidth,
+              ),
+              Expanded(
+                child: Text(
+                  "(PDF, DOC)",
+                  style: TextStyle(
+                    fontSize: Style.sizeSubTitle,
+                    fontWeight: FontWeight.w400,
+                    color: Style.textColorLight,
+                  ),
+                ),
+              ),
+            ],
           ),
 
           SizedBox(
@@ -690,28 +707,45 @@ class _getPhotographOrderDocumentState extends State<getPhotographOrderDocument>
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          ElevatedButton(
-            onPressed: () async{
-              final result = await FilePicker.platform.pickFiles(
-                allowMultiple: true,
-                type: FileType.custom,
-                allowedExtensions: ['jpg', 'img', 'jpeg', 'png'],
-              );
-              if(result == null) return;
-              _files = [];
-              _files = result.files;
-              setState(() {
-                displayFiles(_files);
-              });
-            },
-            child: Text(
-              "Upload File",
-              style: TextStyle(
-                fontSize: Style.sizeButtonText,
-                fontWeight: FontWeight.bold,
-                color: Style.textColorDark,
+          Row(
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () async{
+                  final result = await FilePicker.platform.pickFiles(
+                    allowMultiple: true,
+                    type: FileType.custom,
+                    allowedExtensions: ['jpg', 'img', 'jpeg', 'png'],
+                  );
+                  if(result == null) return;
+                  _files = [];
+                  _files = result.files;
+                  setState(() {
+                    displayFiles(_files);
+                  });
+                },
+                child: Text(
+                  "Upload File",
+                  style: TextStyle(
+                    fontSize: Style.sizeButtonText,
+                    fontWeight: FontWeight.bold,
+                    color: Style.textColorDark,
+                  ),
+                ),
               ),
-            ),
+              SizedBox(
+                width: Style.paddingWidth,
+              ),
+              Expanded(
+                child: Text(
+                  "(JPG, IMG, JPEG, PNG)",
+                  style: TextStyle(
+                    fontSize: Style.sizeSubTitle,
+                    fontWeight: FontWeight.w400,
+                    color: Style.textColorLight,
+                  ),
+                ),
+              ),
+            ],
           ),
 
           SizedBox(

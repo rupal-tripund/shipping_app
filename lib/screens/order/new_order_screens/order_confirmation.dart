@@ -113,7 +113,7 @@ class _viewOrderListState extends State<viewOrderList> {
                       Row(
                         children: <Widget>[
                           Text(
-                            'No of Items : ',
+                            'Total No of Items : ',
                             style: TextStyle(
                               fontSize: Style.sizeSubTitle * 1,
                               fontWeight: FontWeight.bold,
@@ -159,7 +159,7 @@ class _viewOrderListState extends State<viewOrderList> {
                         height: Style.paddingHeight / 1.5,
                       ),
                       Text(
-                        'Details : ',
+                        'Items : ',
                         style: TextStyle(
                           fontSize: Style.sizeSubTitle * 1,
                           fontWeight: FontWeight.bold,
