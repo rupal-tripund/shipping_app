@@ -14,11 +14,23 @@ class GetHistory extends StatefulWidget {
 }
 
 class _GetHistoryState extends State<GetHistory> {
-  final _scaffoldHistoryKey = GlobalKey<ScaffoldState>();
+  List<GlobalKey<ScaffoldState>> _scaffoldHistoryKey = [];
+  @override
+  void initState() {
+    super.initState();
+    _scaffoldHistoryKey = [];
+    _scaffoldHistoryKey.add(GlobalKey<ScaffoldState>());
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _scaffoldHistoryKey[0].currentState?.dispose();
+    _scaffoldHistoryKey = [];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldHistoryKey,
+      key: _scaffoldHistoryKey[0],
       drawer: SideMenu(),
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -28,7 +40,7 @@ class _GetHistoryState extends State<GetHistory> {
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
-            _scaffoldHistoryKey.currentState?.openDrawer();
+            _scaffoldHistoryKey[0].currentState?.openDrawer();
           },
         ),
         centerTitle: true,

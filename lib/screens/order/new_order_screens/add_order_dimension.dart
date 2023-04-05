@@ -4,7 +4,6 @@ import 'package:input_quantity/input_quantity.dart';
 import '../../../constants/styles.dart';
 
 int _nItem = 0;
-final _dimensionFormKey = GlobalKey<FormState>();
 class Item{
   String header;
   Widget body;
@@ -12,8 +11,15 @@ class Item{
   Item(this.header, this.body, this.isExpanded);
 }
 
-class AddOrderDimension extends StatelessWidget {
+class AddOrderDimension extends StatefulWidget {
   const AddOrderDimension({Key? key}) : super(key: key);
+
+  @override
+  State<AddOrderDimension> createState() => _AddOrderDimensionState();
+}
+
+class _AddOrderDimensionState extends State<AddOrderDimension> {
+  final _dimensionFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,18 +48,6 @@ class AddOrderDimension extends StatelessWidget {
               child: PanelWidget(),
             ),
 
-            // Align(
-            //   alignment: Alignment.bottomCenter,
-            //   child: Container(
-            //     padding: EdgeInsets.symmetric(
-            //       horizontal: MediaQuery.of(context).size.width < 450
-            //           ? Style.paddingHeight : Style.paddingHeight * 3,
-            //       vertical: MediaQuery.of(context).size.width < 450
-            //           ? Style.paddingHeight : Style.paddingHeight * 3,
-            //     ),
-            //     child: ButtonWidget(),
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -113,50 +107,6 @@ class _PanelWidgetState extends State<PanelWidget> {
   }
 }
 
-class ButtonWidget extends StatefulWidget {
-  const ButtonWidget({Key? key}) : super(key: key);
-
-  @override
-  State<ButtonWidget> createState() => _ButtonWidgetState();
-}
-
-class _ButtonWidgetState extends State<ButtonWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          if(_dimensionFormKey.currentState!.validate()){
-
-          }
-        });
-      },
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: Colors.blue,
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                'Next',
-                style: TextStyle(
-                  fontSize: Style.sizeButtonText,
-                  fontWeight: FontWeight.bold,
-                  color: Style.textColorDark,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class getOrderDescriptionTextFields extends StatefulWidget {
   const getOrderDescriptionTextFields({Key? key}) : super(key: key);
