@@ -50,12 +50,13 @@ class SideMenu extends StatelessWidget {
           //   ),
           // ),
           onTap: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfileSettingScreen(),
-
-                ));
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProfileSettingScreen(),
+              ),
+                  (route)=>false,
+            );
           },
         ),
       ),
@@ -72,12 +73,13 @@ class SideMenu extends StatelessWidget {
         ),
 
         onTap: (){
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => newOrderMultipleForm(),
-
-              ));
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => newOrderMultipleForm(),
+            ),
+                (route)=>false,
+          );
         },
       ),
     ),
@@ -111,12 +113,13 @@ class SideMenu extends StatelessWidget {
             ),
           ),
           onTap: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => GetHistory(),
-
-                ));
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => GetHistory(),
+              ),
+              (route)=>false,
+            );
           },
         ),
       ),
