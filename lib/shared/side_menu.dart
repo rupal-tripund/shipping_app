@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shipping_app/constants/styles.dart';
+import 'package:shipping_app/shared/CustomRoute.dart';
 import '../screens/order/history.dart';
 import '../screens/order/new_order_screens/new_order_screen.dart';
 import '../widgets/profile_settings.dart';
@@ -52,10 +53,8 @@ class SideMenu extends StatelessWidget {
           onTap: (){
             Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(
-                builder: (context) => ProfileSettingScreen(),
-              ),
-                  (route)=>false,
+              CustomPageRoute(child: ProfileSettingScreen(), direction: AxisDirection.right),
+              (route)=>false,
             );
           },
         ),
@@ -75,10 +74,8 @@ class SideMenu extends StatelessWidget {
         onTap: (){
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(
-              builder: (context) => newOrderMultipleForm(),
-            ),
-                (route)=>false,
+            CustomPageRoute(child: newOrderMultipleForm(), direction: AxisDirection.right),
+            (route)=>false,
           );
         },
       ),
@@ -113,11 +110,8 @@ class SideMenu extends StatelessWidget {
             ),
           ),
           onTap: (){
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => GetHistory(),
-              ),
+            Navigator.of(context).pushAndRemoveUntil(
+              CustomPageRoute(child: GetHistory(), direction: AxisDirection.right),
               (route)=>false,
             );
           },
