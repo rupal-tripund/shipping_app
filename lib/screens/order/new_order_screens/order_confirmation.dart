@@ -76,11 +76,12 @@ class _viewOrderListState extends State<viewOrderList> {
           Align(
             alignment: Alignment.center,
             child: Card(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13.0),),
               elevation: 3,
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal:Style.paddingHeight,
-                  vertical: Style.paddingWidth,
+                  horizontal:Style.paddingWidth,
+                  vertical: Style.paddingHeight,
                 ),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,6 +178,8 @@ class _viewOrderListState extends State<viewOrderList> {
                           itemCount: _items.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Card(
+                              elevation: 1,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13.0),),
                               child: ListTile(
                                 title: Text(
                                   _items[index]['name'],
