@@ -441,31 +441,41 @@ class _getUploadDocumentsState extends State<getUploadDocuments> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      files[i].name,
-                      style: TextStyle(
-                        fontSize: Style.sizeButtonText / 1,
-                        fontWeight: FontWeight.w300,
-                        color: Style.textColorLight,
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        files[i].name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: Style.sizeButtonText / 1,
+                          fontWeight: FontWeight.w300,
+                          color: Style.textColorLight,
+                        ),
                       ),
                     ),
                   ),
 
-                  Align(
-                    alignment: Alignment.center,
-                    child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          files.removeAt(i);
-                          _fileNames.removeAt(i);
-                          _files = files;
-                          displayFiles(_files);
-                        });
-                      },
-                      icon: Icon(Icons.delete),
-                      iconSize: Style.sizeButtonText / 1,
+                  SizedBox(
+                    width: Style.paddingWidth / 2.5,
+                  ),
+
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            files.removeAt(i);
+                            _fileNames.removeAt(i);
+                            _files = files;
+                            displayFiles(_files);
+                          });
+                        },
+                        icon: Icon(Icons.delete),
+                        iconSize: Style.sizeButtonText / 1,
+                      ),
                     ),
                   ),
 
@@ -588,33 +598,41 @@ class _getPhotographOrderDocumentState extends State<getPhotographOrderDocument>
             children: <Widget>[
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      files[i].name,
-                      style: TextStyle(
-                        fontSize: Style.sizeButtonText / 1,
-                        fontWeight: FontWeight.w300,
-                        color: Style.textColorLight,
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        files[i].name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: Style.sizeButtonText / 1,
+                          fontWeight: FontWeight.w300,
+                          color: Style.textColorLight,
+                        ),
                       ),
                     ),
                   ),
-
-                  Align(
-                    alignment: Alignment.center,
-                    child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          files.removeAt(i);
-                          _fileNames.removeAt(i);
-                          _files = files;
-                          displayFiles(_files);
-                        });
-                      },
-                      icon: Icon(Icons.delete),
-                      iconSize: Style.sizeButtonText / 1,
+                  SizedBox(
+                    width: Style.paddingWidth / 2.5,
+                  ),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            files.removeAt(i);
+                            _fileNames.removeAt(i);
+                            _files = files;
+                            displayFiles(_files);
+                          });
+                        },
+                        icon: Icon(Icons.delete),
+                        iconSize: Style.sizeButtonText / 1,
+                      ),
                     ),
                   ),
 
