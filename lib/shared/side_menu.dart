@@ -51,8 +51,7 @@ class SideMenu extends StatelessWidget {
           //   ),
           // ),
           onTap: (){
-            Navigator.pushAndRemoveUntil(
-              context,
+            Navigator.of(context).pushAndRemoveUntil(
               CustomPageRoute(child: ProfileSettingScreen(), direction: AxisDirection.right),
               (route)=>false,
             );
@@ -72,8 +71,7 @@ class SideMenu extends StatelessWidget {
         ),
 
         onTap: (){
-          Navigator.pushAndRemoveUntil(
-            context,
+          Navigator.of(context).pushAndRemoveUntil(
             CustomPageRoute(child: newOrderMultipleForm(), direction: AxisDirection.right),
             (route)=>false,
           );
