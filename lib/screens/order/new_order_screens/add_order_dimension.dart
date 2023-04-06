@@ -537,6 +537,11 @@ class _getUploadDocumentsState extends State<getUploadDocuments> {
           Row(
             children: <Widget>[
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
                 onPressed: () async{
                   final result = await FilePicker.platform.pickFiles(
                     allowMultiple: true,
@@ -553,7 +558,7 @@ class _getUploadDocumentsState extends State<getUploadDocuments> {
                 child: Text(
                   "Upload File",
                   style: TextStyle(
-                    fontSize: Style.sizeButtonText,
+                    fontSize: Style.sizeButtonText / 1.5,
                     fontWeight: FontWeight.bold,
                     color: Style.textColorDark,
                   ),
@@ -566,7 +571,7 @@ class _getUploadDocumentsState extends State<getUploadDocuments> {
                 child: Text(
                   "(PDF, DOC)",
                   style: TextStyle(
-                    fontSize: Style.sizeSubTitle,
+                    fontSize: Style.sizeSubTitle / 1.5,
                     fontWeight: FontWeight.w400,
                     color: Style.textColorLight,
                   ),
@@ -652,7 +657,6 @@ class _getPhotographOrderDocumentState extends State<getPhotographOrderDocument>
                       ),
                     ),
                   ),
-
                 ],
               ),
             ],
@@ -695,6 +699,11 @@ class _getPhotographOrderDocumentState extends State<getPhotographOrderDocument>
           Row(
             children: <Widget>[
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
                 onPressed: () async{
                   final result = await FilePicker.platform.pickFiles(
                     allowMultiple: true,
@@ -711,7 +720,7 @@ class _getPhotographOrderDocumentState extends State<getPhotographOrderDocument>
                 child: Text(
                   "Upload File",
                   style: TextStyle(
-                    fontSize: Style.sizeButtonText,
+                    fontSize: Style.sizeButtonText / 1.5,
                     fontWeight: FontWeight.bold,
                     color: Style.textColorDark,
                   ),
@@ -724,7 +733,7 @@ class _getPhotographOrderDocumentState extends State<getPhotographOrderDocument>
                 child: Text(
                   "(JPG, IMG, JPEG, PNG)",
                   style: TextStyle(
-                    fontSize: Style.sizeSubTitle,
+                    fontSize: Style.sizeSubTitle / 1.5,
                     fontWeight: FontWeight.w400,
                     color: Style.textColorLight,
                   ),
