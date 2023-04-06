@@ -95,40 +95,49 @@ class GetOrderDetails extends StatelessWidget {
                 SizedBox(
                   height: Style.paddingHeight / 2,
                 ),
-                Text.rich(
-                  TextSpan(
-                    children: <InlineSpan>[
+                Container(
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text.rich(
+                      textAlign: TextAlign.left,
                       TextSpan(
-                        text: 'Order Description : ',
-                        style: TextStyle(
-                          fontSize: Style.sizeSubTitle,
-                          fontWeight: FontWeight.bold,
-                          color: Style.blueAccentPageBackgroundColor,
-                        ),
-                      ),
-                      WidgetSpan(
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height: Style.paddingHeight / 3.5,
+                        children: <InlineSpan>[
+                          TextSpan(
+                            text: 'Order Description : ',
+                            style: TextStyle(
+                              fontSize: Style.sizeSubTitle,
+                              fontWeight: FontWeight.bold,
+                              color: Style.blueAccentPageBackgroundColor,
                             ),
-                            ReadMoreText(
-                              'Samsung AUE60 Crystal 4k UHD Smart TV. Powerful 4K upscaling ensures you get up to 4K resolution for the content you love. You will also experience more lifelike color expressions due to its sophisticated color mapping technology. ',
-                              trimLines: 2,
-                              colorClickableText: Style.textColorGrey,
-                              trimMode: TrimMode.Line,
-                              trimCollapsedText: ' show more',
-                              trimExpandedText: ' show less',
-                              style: TextStyle(
-                                fontSize: Style.sizeSubTitle,
-                                fontWeight: FontWeight.w400,
-                                color: Style.textColorLight,
-                              ),
+                          ),
+                          WidgetSpan(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(
+                                  height: Style.paddingHeight / 3.5,
+                                ),
+                                ReadMoreText(
+                                  'Samsung AUE60 Crystal 4k UHD Smart TV. Powerful 4K upscaling ensures you get up to 4K resolution for the content you love. You will also experience more lifelike color expressions due to its sophisticated color mapping technology. ',
+                                  trimLines: 2,
+                                  colorClickableText: Style.textColorGrey,
+                                  trimMode: TrimMode.Line,
+                                  trimCollapsedText: ' show more',
+                                  trimExpandedText: ' show less',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: Style.sizeSubTitle,
+                                    fontWeight: FontWeight.w400,
+                                    color: Style.textColorLight,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
                 Divider(),
@@ -183,39 +192,45 @@ class GetOrderDetails extends StatelessWidget {
                 SizedBox(
                   height: Style.paddingHeight / 2,
                 ),
-                Text.rich(
-                  TextSpan(
-                    children: [
+                Container(
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text.rich(
+                      textAlign: TextAlign.left,
                       TextSpan(
-                        text: 'Pickup From : ',
-                        style: TextStyle(
-                          fontSize: Style.sizeSubTitle,
-                          fontWeight: FontWeight.bold,
-                          color: Style.blueAccentPageBackgroundColor,
-                        ),
-                      ),
-                      WidgetSpan(
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height: Style.paddingHeight / 3.5,
+                        children: [
+                          TextSpan(
+                            text: 'Pickup From : ',
+                            style: TextStyle(
+                              fontSize: Style.sizeSubTitle,
+                              fontWeight: FontWeight.bold,
+                              color: Style.blueAccentPageBackgroundColor,
                             ),
-                            ReadMoreText(
-                              'Shop no 5, kamal sagar,90 feet road, airoli, navi mumbai.',
-                              trimLines: 2,
-                              trimMode: TrimMode.Line,
-                              colorClickableText: Style.textColorGrey,
-                              trimCollapsedText: 'show more',
-                              trimExpandedText: 'show less',
-                              style: TextStyle(
-                                  fontSize: Style.sizeSubTitle,
-                                  fontWeight: FontWeight.w400,
-                                  color: Style.textColorLight),
+                          ),
+                          WidgetSpan(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                ReadMoreText(
+                                  'Shop no 5, kamal sagar,90 feet road, airoli, navi mumbai.',
+                                  trimLines: 2,
+                                  trimMode: TrimMode.Line,
+                                  colorClickableText: Style.textColorGrey,
+                                  trimCollapsedText: 'show more',
+                                  trimExpandedText: 'show less',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: Style.sizeSubTitle,
+                                      fontWeight: FontWeight.w400,
+                                      color: Style.textColorLight),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
                 Divider(),
