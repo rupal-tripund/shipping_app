@@ -439,7 +439,7 @@ class _getUploadDocumentsState extends State<getUploadDocuments> {
             children: <Widget>[
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Expanded(
                     child: Align(

@@ -26,6 +26,7 @@ class _addOrderDetailsState extends State<addOrderDetails> {
   ];
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -46,9 +47,17 @@ class _addOrderDetailsState extends State<addOrderDetails> {
           ),
           TextFormField(
             controller: orderNumber,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(vertical: (size.height / 75), horizontal: (size.width / 90)),
               prefixIcon: const Icon(Icons.numbers_outlined),
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderSide: BorderSide(width: 0.90 , color: Colors.grey),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderSide: BorderSide(width: 0.95, color: Colors.grey),
+              ),
               hintText: 'Order Number',
             ),
           ),
@@ -57,9 +66,17 @@ class _addOrderDetailsState extends State<addOrderDetails> {
           ),
           TextFormField(
             controller: retailerName,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(vertical: (size.height / 75), horizontal: (size.width / 90)),
               prefixIcon: const Icon(Icons.person),
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderSide: BorderSide(width: 0.90 , color: Colors.grey),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderSide: BorderSide(width: 0.95, color: Colors.grey),
+              ),
               hintText: 'Order Retailer Name',
             ),
           ),
@@ -71,15 +88,20 @@ class _addOrderDetailsState extends State<addOrderDetails> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
-                  child: Container(
-                    height: 55,
-                    child: TextFormField(
-                      controller: NumOfItems,
-                      decoration: const InputDecoration(
-                        prefixIcon: const Icon(Icons.numbers_outlined),
-                        border: OutlineInputBorder(),
-                        hintText: 'Number of Items',
+                  child: TextFormField(
+                    controller: NumOfItems,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(vertical: (size.height / 75), horizontal: (size.width / 90)),
+                      prefixIcon: const Icon(Icons.numbers_outlined),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        borderSide: BorderSide(width: 0.90 , color: Colors.grey),
                       ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        borderSide: BorderSide(width: 0.95, color: Colors.grey),
+                      ),
+                      hintText: 'Number of Items',
                     ),
                   )
               ),
@@ -87,36 +109,37 @@ class _addOrderDetailsState extends State<addOrderDetails> {
                 width: Style.paddingWidth,
               ),
               Expanded(
-                child: Container(
-                  height: 55,
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButtonFormField(
-                      decoration: InputDecoration(
-                        hintText: 'Choose a Product',
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.grey, width: 1),
-                        ),
-                        border: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Colors.grey, width: 1),
-                        ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButtonFormField(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(vertical: (size.height / 80), horizontal: (size.width / 90)),
+                      prefixIcon: const Icon(Icons.shopping_cart),
+                      hintText: 'Product',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        borderSide: BorderSide(width: 0.90 , color: Colors.grey),
                       ),
-                      value: _items.isEmpty ? null : _items,
-                      isDense: true,
-                      isExpanded: true,
-                      onChanged: (newValue) {
-                        setState(() {
-                          _items = newValue!;
-                        });
-                      },
-                      items: _itemList.map(
-                              (item) {
-                            return DropdownMenuItem(
-                              value: item,
-                              child: Text(item),
-                            );
-                          }
-                      ).toList(),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        borderSide: BorderSide(width: 0.95, color: Colors.grey),
+                      ),
                     ),
+                    value: _items.isEmpty ? null : _items,
+                    isDense: true,
+                    isExpanded: true,
+                    onChanged: (newValue) {
+                      setState(() {
+                        _items = newValue!;
+                      });
+                    },
+                    items: _itemList.map(
+                            (item) {
+                          return DropdownMenuItem(
+                            value: item,
+                            child: Text(item),
+                          );
+                        }
+                    ).toList(),
                   ),
                 ),
               ),
@@ -128,10 +151,17 @@ class _addOrderDetailsState extends State<addOrderDetails> {
           ),
           TextFormField(
             controller: billingAddress,
-            obscureText: true,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(vertical: (size.height / 75), horizontal: (size.width / 90)),
               prefixIcon: const Icon(Icons.home),
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderSide: BorderSide(width: 0.90 , color: Colors.grey),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderSide: BorderSide(width: 0.95, color: Colors.grey),
+              ),
               hintText: 'Billing Address',
             ),
           ),
@@ -140,10 +170,17 @@ class _addOrderDetailsState extends State<addOrderDetails> {
           ),
           TextFormField(
             controller: shippingAddress,
-            obscureText: true,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(vertical: (size.height / 75), horizontal: (size.width / 90)),
               prefixIcon: const Icon(Icons.home),
-              border: OutlineInputBorder(),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderSide: BorderSide(width: 0.90 , color: Colors.grey),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderSide: BorderSide(width: 0.95, color: Colors.grey),
+              ),
               hintText: 'Shipping Address',
             ),
           ),

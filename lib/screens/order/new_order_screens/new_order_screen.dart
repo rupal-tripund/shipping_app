@@ -117,57 +117,70 @@ class _getStepperState extends State<_getStepper> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Stepper(
-      elevation: 0.0,
-      physics: const BouncingScrollPhysics(),
-      type: StepperType.horizontal,
-      steps: getSteps(),
-      currentStep: currentStep,
-      onStepContinue: () {
-        final isLastStep = currentStep == getSteps().length -1;
-        setState(() {
-          if(!isLastStep){
-            currentStep += 1;
-          }
-        });
-      },
-      onStepCancel: () {
-        setState(() {
-          if(currentStep > 0){
-            currentStep -= 1;
-          }
-        });
-      },
-      onStepTapped: (int index) {
-        setState(() {
-          currentStep = index;
-        });
-      },
-      controlsBuilder: (BuildContext context, ControlsDetails details) {
-        final isLastStep = currentStep == getSteps().length -1;
-        return Container(
-          margin: EdgeInsets.only(top: Style.paddingHeight),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: ElevatedButton(
-                  child: Text('BACK'),
-                  onPressed: details.onStepCancel,
+    return Theme(
+      data: ThemeData(canvasColor: Style.primaryBackgroundColor),
+      child: Stepper(
+        elevation: 0.0,
+        physics: const BouncingScrollPhysics(),
+        type: StepperType.horizontal,
+        steps: getSteps(),
+        currentStep: currentStep,
+        onStepContinue: () {
+          final isLastStep = currentStep == getSteps().length -1;
+          setState(() {
+            if(!isLastStep){
+              currentStep += 1;
+            }
+          });
+        },
+        onStepCancel: () {
+          setState(() {
+            if(currentStep > 0){
+              currentStep -= 1;
+            }
+          });
+        },
+        onStepTapped: (int index) {
+          setState(() {
+            currentStep = index;
+          });
+        },
+        controlsBuilder: (BuildContext context, ControlsDetails details) {
+          final isLastStep = currentStep == getSteps().length -1;
+          return Container(
+            margin: EdgeInsets.only(top: Style.paddingHeight),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ElevatedButton(
+                    child: Text('BACK', style: TextStyle(fontSize: Style.sizeButtonText / 1.5),),
+                    onPressed: details.onStepCancel,
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: Style.paddingHeight / 3,
-              ),
-              Expanded(
-                child: ElevatedButton(
-                  child: Text(isLastStep ? 'CONFIRM' : 'NEXT'),
-                  onPressed: details.onStepContinue,
+                SizedBox(
+                  width: Style.paddingHeight / 3,
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+                Expanded(
+                  child: ElevatedButton(
+                    child: Text(isLastStep ? 'CONFIRM' : 'NEXT', style: TextStyle(fontSize: Style.sizeButtonText / 1.5),),
+                    onPressed: details.onStepContinue,
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
