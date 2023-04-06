@@ -91,7 +91,7 @@ class _addOrderDetailsState extends State<addOrderDetails> {
                   child: TextFormField(
                     controller: NumOfItems,
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: (size.height / 75), horizontal: (size.width / 90)),
+                      contentPadding: EdgeInsets.symmetric(vertical: (size.height / 78), horizontal: (size.width / 90)),
                       prefixIcon: const Icon(Icons.numbers_outlined),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -112,7 +112,7 @@ class _addOrderDetailsState extends State<addOrderDetails> {
                 child: DropdownButtonHideUnderline(
                   child: DropdownButtonFormField(
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: (size.height / 80), horizontal: (size.width / 90)),
+                      contentPadding: EdgeInsets.symmetric(vertical: (size.height / 84), horizontal: (size.width / 90)),
                       prefixIcon: const Icon(Icons.shopping_cart),
                       hintText: 'Product',
                       border: OutlineInputBorder(

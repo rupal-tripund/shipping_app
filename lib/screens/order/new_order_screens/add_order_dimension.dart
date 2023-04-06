@@ -87,7 +87,7 @@ class _PanelWidgetState extends State<PanelWidget> {
                 title: Text(
                   item.header,
                   style: TextStyle(
-                    fontSize: Style.sizeSubTitle * 1.3,
+                    fontSize: Style.sizeSubTitle * 1.1,
                     fontWeight: FontWeight.w300,
                     color: Style.textColorLight,
                   ),
@@ -117,12 +117,10 @@ class getOrderDescriptionTextFields extends StatefulWidget {
 class _getOrderDescriptionTextFieldsState extends State<getOrderDescriptionTextFields> {
   List<TextEditingController> descriptionControllers = [];
   List<Container> descriptionTextFields = [];
-
    void createControllers() {
      for (var i = 0; i < _nItem; i++) {
        descriptionControllers.add(TextEditingController());
      }
-     createTextFields();
    }
 
    void disposeControllersAndTextFields(){
@@ -133,7 +131,8 @@ class _getOrderDescriptionTextFieldsState extends State<getOrderDescriptionTextF
      descriptionTextFields = [];
    }
 
-   void createTextFields(){
+   void createTextFields(Size size){
+     descriptionTextFields = [];
      for (var i = 0; i < _nItem; i++) {
        descriptionTextFields.add(
          Container(
@@ -144,14 +143,17 @@ class _getOrderDescriptionTextFieldsState extends State<getOrderDescriptionTextF
            child: TextFormField(
              controller: descriptionControllers[i],
              decoration: InputDecoration(
-             prefixIcon: const Icon(Icons.description),
-             border: OutlineInputBorder(
-               borderSide: const BorderSide(color: Colors.grey, width: 1),
-             ),
-             enabledBorder: OutlineInputBorder(
-               borderSide: const BorderSide(color: Colors.grey, width: 1),
-             ),
-             hintText: 'Enter item '+(i+1).toString()+ ' description',
+               contentPadding: EdgeInsets.symmetric(vertical: (size.height / 75), horizontal: (size.width / 90)),
+               prefixIcon: const Icon(Icons.description),
+               border: OutlineInputBorder(
+                 borderRadius: BorderRadius.all(Radius.circular(8)),
+                 borderSide: BorderSide(width: 0.90 , color: Colors.grey),
+               ),
+               enabledBorder: OutlineInputBorder(
+                 borderRadius: BorderRadius.all(Radius.circular(8)),
+                 borderSide: BorderSide(width: 0.95, color: Colors.grey),
+               ),
+               hintText: 'Enter item '+(i+1).toString()+ ' description',
              ),
              validator: (value){
                if(value!.isEmpty) {
@@ -178,6 +180,8 @@ class _getOrderDescriptionTextFieldsState extends State<getOrderDescriptionTextF
   }
   @override
   Widget build(BuildContext context) {
+    var size =  MediaQuery.of(context).size;
+    createTextFields(size);
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width < 450
@@ -221,14 +225,15 @@ class _getOrderDimensionState extends State<getOrderDimension> {
       dimensionWidthControllers.add(TextEditingController());
       dimensionHeightControllers.add(TextEditingController());
     }
-    createFields();
+    dimensionTextFields = [];
   }
 
   void setQuantity(int value, int index){
     _productQuantity[index] = value;
   }
 
-  void createFields(){
+  void createFields(Size size){
+    dimensionTextFields = [];
     for (var i = 0; i < _productNames.length; i++) {
       dimensionTextFields.add(
         Container(
@@ -296,12 +301,15 @@ class _getOrderDimensionState extends State<getOrderDimension> {
               TextFormField(
                 controller: dimensionLengthControllers[i],
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: (size.height / 75), horizontal: (size.width / 90)),
                   prefixIcon: const Icon(Icons.description),
                   border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide(width: 0.90 , color: Colors.grey),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide(width: 0.95, color: Colors.grey),
                   ),
                   hintText: 'Enter order length',
                 ),
@@ -319,12 +327,15 @@ class _getOrderDimensionState extends State<getOrderDimension> {
               TextFormField(
                 controller: dimensionWidthControllers[i],
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: (size.height / 75), horizontal: (size.width / 90)),
                   prefixIcon: const Icon(Icons.description),
                   border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide(width: 0.90 , color: Colors.grey),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide(width: 0.95, color: Colors.grey),
                   ),
                   hintText: 'Enter order width',
                 ),
@@ -342,12 +353,15 @@ class _getOrderDimensionState extends State<getOrderDimension> {
               TextFormField(
                 controller: dimensionHeightControllers[i],
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: (size.height / 75), horizontal: (size.width / 90)),
                   prefixIcon: const Icon(Icons.description),
                   border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide(width: 0.90 , color: Colors.grey),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.grey, width: 1),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderSide: BorderSide(width: 0.95, color: Colors.grey),
                   ),
                   hintText: 'Enter order height',
                 ),
@@ -379,6 +393,7 @@ class _getOrderDimensionState extends State<getOrderDimension> {
     }
     dimensionLengthControllers = [];
     dimensionWidthControllers = [];
+    dimensionHeightControllers = [];
     dimensionTextFields = [];
   }
 
@@ -394,6 +409,8 @@ class _getOrderDimensionState extends State<getOrderDimension> {
   }
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    createFields(size);
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width < 450
